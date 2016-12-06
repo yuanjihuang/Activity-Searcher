@@ -71,7 +71,7 @@ public class registerActivity extends AppCompatActivity{
                       sendRequestWithHttpURLConnection();//进入到子线程中进行操作
                   }
                   else{
-                      Toast.makeText(registerActivity.this,"当前没有可用网络!",Toast.LENGTH_SHORT).show();
+                      Toast.makeText(registerActivity.this,"当前没有可用网络!!",Toast.LENGTH_SHORT).show();
                   }
               }
             }
