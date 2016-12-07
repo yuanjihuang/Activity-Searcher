@@ -153,6 +153,12 @@
             android:text="性别:"/>
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,6 +175,7 @@
                 android:textColor="#888888"
                 android:layout_marginBottom="10dp"
                 android:text="女生"/>
+        </RadioGroup>
     </LinearLayout>
 
 
