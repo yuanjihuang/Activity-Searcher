@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dark_red">#ffe45639</color>
+    <color name="red">#FF0000</color>
+    <color name="light_red">#ffff4242</color>
+    <color name="font_gray">#999999</color>
+    <color name="gray">#ff999999</color>
+    <!-- 状态栏 -->
+    <color name="statusbar_bg">#0089E4</color>
+    <color name="btn_dis">#81BAFF</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <!-- 输入框 -->
+    <color name="input_padding_bg">#dbd8d8</color>
+    <!-- 字体颜色 -->
+    <color name="font_black_content">#ff666666</color>
+    <color name="text_light_gray">#666465</color>
+    <color name="text_black">#252525</color>
+    <color name="reply_theme_content_text">#666465</color>
+    <color name="goods_detail_username">#9e6142</color>
+    <color name="goods_detail_price">#fe785f</color>
 </resources>

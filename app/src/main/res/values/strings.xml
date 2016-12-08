@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ZHAOHUO</string>
+    <string name="title_activity_userinfo">userinfoActivity</string>
 </resources>
