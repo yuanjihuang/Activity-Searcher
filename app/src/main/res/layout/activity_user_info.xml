@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.proj.zhaohuo.userInfoActivity">
+    <LinearLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="17dp" >
+
+            <FrameLayout
+                android:id="@+id/userBackgroundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="188dp" >
+
+                <ImageView
+                    android:id="@+id/userBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/statusbar_bg" />
+
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/icon_sharow"
+                android:layout_width="87dp"
+                android:layout_height="87dp"
+                android:layout_alignBottom="@id/userBackgroundLayout"
+                android:layout_marginBottom="-27dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/user_detail_sharow"
+                 >
+
+                <ImageView
+                    android:id="@+id/user_detail_avatar"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_avatar" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/user_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userBackgroundLayout"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="44dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/font_black_content"
+                android:textSize="18sp" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textColor="@color/font_black_content"
+                android:textSize="24sp"
+                android:id="@+id/AcctName"
+                android:layout_alignBaseline="@+id/user_detail_name"
+                android:layout_alignBottom="@+id/user_detail_name"
+                android:layout_toEndOf="@+id/user_detail_name" />
+            <ImageView
+                android:id="@+id/UserSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sex_boy"
+                android:layout_alignBottom="@+id/AcctName"
+                android:layout_toEndOf="@+id/AcctKind"
+                android:layout_alignTop="@+id/AcctKind" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kind"
+                android:textColor="@color/gray"
+                android:id="@+id/AcctKind"
+                android:layout_marginStart="36dp"
+                android:layout_alignBottom="@+id/AcctName"
+                android:layout_toEndOf="@+id/AcctName" />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/divider"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所在学校"
+                android:textColor="@color/btn_dis"
+                android:textSize="16sp"
+                android:id="@+id/UserSchool" />
+
+            <TextView
+                android:id="@+id/userdetail_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="未填写"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textColor="@color/btn_dis"
+                android:textSize="16sp"
+                android:id="@+id/UserName" />
+
+            <TextView
+                android:id="@+id/userdetail_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="未填写"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学号"
+                android:textColor="@color/btn_dis"
+                android:textSize="16sp"
+                android:id="@+id/UserID" />
+
+            <TextView
+                android:id="@+id/userdetail_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="未填写"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年级"
+                android:textColor="@color/btn_dis"
+                android:textSize="16sp"
+                android:id="@+id/UserGrade" />
+
+            <TextView
+                android:id="@+id/userdetail_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="未填写"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/divider"/>
+        <LinearLayout
+            android:id="@+id/userdetail_goods"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+
+            <TextView
+                android:id="@+id/userdetail_goods_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="我的简介"
+                android:textColor="#222222"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/user_home_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/userdetail_like"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/list_item_selector"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp" >
+            <TextView
+                android:id="@+id/userdetail_like_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="我的圈子"
+                android:textColor="#222222"
+                android:textSize="16sp" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/user_home_arrow" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
