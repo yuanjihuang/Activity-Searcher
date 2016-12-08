@@ -16,7 +16,9 @@ import java.util.List;
  * Created by Yelluw on 2016/12/8.
  */
 public class ConnectHelper {
-    public ConnectHelper(){}
+    public String url = "http://172.19.112.151:8300/project2/";
+    public ConnectHelper(){
+    }
     public String readIt(InputStream stream, int len) throws IOException,UnsupportedEncodingException
     {  Reader reader = null;
         reader = new InputStreamReader(stream, "GB18030");

@@ -22,6 +22,8 @@
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
         <activity android:name=".userInfoActivity"></activity>
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".ActivitySquare"></activity>
     </application>
 
 </manifest>

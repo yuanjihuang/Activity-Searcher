@@ -33,8 +33,7 @@ import java.util.List;
 
 
 public class registerActivity extends AppCompatActivity{
-    String check_sign_up ="http://192.168.191.1" +
-            ":8300/project2/Service/check_sign_up.jsp";
+
     //private static final String[] type ={"个人","社团"};
     private String Kind = "false";
     private String Name;
@@ -47,6 +46,7 @@ public class registerActivity extends AppCompatActivity{
     private RadioGroup Kind_select;
     private ConnectHelper connectHelper;
     private ArrayAdapter<String> adapter;
+    String check_sign_up;
     //所有findView操作集中findView中管理
     private void initialize(){
         setContentView(R.layout.register);
@@ -56,6 +56,8 @@ public class registerActivity extends AppCompatActivity{
         submit = (Button)findViewById(R.id.register_button);
         Kind_select = (RadioGroup)findViewById(R.id.select_kind);
         connectHelper = new ConnectHelper();
+        check_sign_up = connectHelper.url +
+                "Service/check_sign_up.jsp";
         /*
         spinner = (Spinner)findViewById(R.id.login_spinner);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,type);
