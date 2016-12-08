@@ -33,15 +33,18 @@ import java.util.List;
 
 
 public class registerActivity extends AppCompatActivity{
-    String check_sign_up ="http://172.18.56.73:8300/project2/Service/check_sign_up.jsp";
-    private static final String[] type ={"个人","社团"};
+    String check_sign_up ="http://192.168.191.1" +
+            ":8300/project2/Service/check_sign_up.jsp";
+    //private static final String[] type ={"个人","社团"};
     private String Kind = "false";
+    private String Name;
+    private String Pwd;
     private Spinner spinner;
     private EditText username;
     private EditText password;
     private EditText check;
     private Button submit;
-    private RadioGroup sex;
+    private RadioGroup Kind_select;
     private ConnectHelper connectHelper;
     private ArrayAdapter<String> adapter;
     //所有findView操作集中findView中管理
@@ -51,14 +54,15 @@ public class registerActivity extends AppCompatActivity{
         password = (EditText)findViewById(R.id.register_password);
         check = (EditText)findViewById(R.id.register_check);
         submit = (Button)findViewById(R.id.register_button);
-        spinner = (Spinner)findViewById(R.id.login_spinner);
-        sex = (RadioGroup)findViewById(R.id.sex);
+        Kind_select = (RadioGroup)findViewById(R.id.select_kind);
         connectHelper = new ConnectHelper();
+        /*
+        spinner = (Spinner)findViewById(R.id.login_spinner);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
-        spinner.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.VISIBLE);*/
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +94,15 @@ public class registerActivity extends AppCompatActivity{
                   NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                   if(networkInfo!=null&&networkInfo.isConnected()) {
 ///////////////////////////////////重点:调用网络方法/////////////////////////////////////////
-                      String Name = username.getText().toString();//获取所需字符串
-                      String Pwd = password.getText().toString();
+                      Name = username.getText().toString();//获取所需字符串
+                      Pwd = password.getText().toString();
                       try{
                           Name = URLEncoder.encode(Name,"GB18030");//在try中将编码模式换为GB18030
                           Pwd = URLEncoder.encode(Pwd,"GB18030");
                           Kind = URLEncoder.encode(Kind,"GB18030");
+                          Log.d("Name Pwd Kind",Name+" "+Pwd+" "+Kind);
                       }catch (Exception e){}
-                      new DownloadWebpageText().execute(check_sign_up+"?Name="+Name+"&Pwd="+Pwd+"&Kind=false");//异步线程调用，参数直接通过?+parameter=的形式传入
+                      new DownloadWebpageText().execute(check_sign_up+"?Name="+Name+"&Pwd="+Pwd+"&Kind="+Kind);//异步线程调用，参数直接通过?+parameter=的形式传入
                   }
                   else{
                       Toast.makeText(registerActivity.this,"当前没有可用网络!",Toast.LENGTH_SHORT).show();
@@ -105,15 +110,10 @@ public class registerActivity extends AppCompatActivity{
               }
             }
         });
-        sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        Kind_select.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton btn=(RadioButton)registerActivity.this.findViewById(checkedId);
-                if(btn.getId() == 1){
-                    Kind = "true";
-                }else{
-                    Kind = "false";
-                }
+                Kind = checkedId==1?"True":"False";
             }
         });
     }
@@ -145,13 +145,16 @@ public class registerActivity extends AppCompatActivity{
             }
         }
     }
-}
-class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+    /*private class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-                               long arg3) {
-    }
-    public void onNothingSelected(AdapterView<?> arg0) {
-    }
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+            Kind = arg2==1?"true":"false";
+        }
+        public void onNothingSelected(AdapterView<?> arg0) {
+
+        }
+    }*/
 }
+
 
