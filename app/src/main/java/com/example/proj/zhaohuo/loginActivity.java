@@ -106,18 +106,21 @@ public class loginActivity extends AppCompatActivity {
         protected void onPostExecute(List<String> result) {
             if(result != null){
                 if(result.size() == 0){
-                    Toast.makeText(getApplicationContext(),"没有返回值",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), result.get(0), Toast.LENGTH_SHORT).show();
                     /*
                     在这里更新UI
                      */
                     char code=result.get(0).toString().charAt(0);
                     System.out.println(result.get(0).toString());
                     if(code=='0'){
-                        System.out.println("yes");
+                        Toast.makeText(getApplicationContext()," 登陆成功！", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(loginActivity.this,Main2Activity.class);
                         startActivity(intent);
+                    }else if(code == '1'){
+                        Toast.makeText(getApplicationContext(), "密码错误！", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "用户不存在！", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

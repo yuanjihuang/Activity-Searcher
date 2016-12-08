@@ -11,20 +11,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Created by Yelluw on 2016/12/8.
  */
 public class ConnectHelper {
-    public String url = "http://172.19.112.151:8300/project2/";
+    public String url = "http://172.18.56.73:8300/project2/";
     public ConnectHelper(){
     }
-    public String readIt(InputStream stream, int len) throws IOException,UnsupportedEncodingException
-    {  Reader reader = null;
-        reader = new InputStreamReader(stream, "GB18030");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+    public String readIt(InputStream stream) throws IOException,UnsupportedEncodingException
+    {
+        String result = IOUtils.toString(stream, "GB18030");
+        return result;
     }
     //连接网络函数，在异步线程中调用
     public List<String> downloadUrl(String myurl) throws IOException{
@@ -41,7 +40,7 @@ public class ConnectHelper {
             int response = conn.getResponseCode(); //状态码为200表示连接成功
             Log.d("The response is",""+response);
             is = conn.getInputStream(); //获取输入流
-            String contentAsString = readIt(is, len); //转换为string
+            String contentAsString = readIt(is); //转换为string
             List<String> reList = new LinkedList<>();
             reList.add(contentAsString);
             return reList;
