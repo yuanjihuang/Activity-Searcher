@@ -19,6 +19,8 @@
         <activity android:name=".registerActivity"></activity>
         <activity android:name=".teamActivity"></activity>
         <activity android:name=".protocolActivity"></activity>
+        <activity android:name=".ActivitySquare"></activity>
+        <activity android:name=".Main2Activity"></activity>
 
     </application>
 </manifest>
