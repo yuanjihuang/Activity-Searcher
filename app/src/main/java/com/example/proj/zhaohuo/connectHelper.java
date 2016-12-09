@@ -17,12 +17,12 @@ import org.apache.commons.io.IOUtils;
  * Created by Yelluw on 2016/12/8.
  */
 public class ConnectHelper {
-    public String url = "http://172.18.56.73:8300/project2/";
+    public String url = "http://172.19.112.251:8300/project2/";
     public ConnectHelper(){
     }
     public String readIt(InputStream stream) throws IOException,UnsupportedEncodingException
     {
-        String result = IOUtils.toString(stream, "GB18030");
+        String result = IOUtils.toString(stream, "utf-8");
         return result;
     }
     //连接网络函数，在异步线程中调用
