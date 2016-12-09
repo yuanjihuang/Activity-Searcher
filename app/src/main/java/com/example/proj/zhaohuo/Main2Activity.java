@@ -27,7 +27,7 @@ public class Main2Activity extends TabActivity {
         tab1.setContent(intentA);
         tab2.setIndicator("圈子");
         Intent intentB=new Intent();
-        //intentB.setClass(Main2Activity.this, );//第二个参数填上圈子的activity
+        intentB.setClass(Main2Activity.this, circlelistActivity.class);//第二个参数填上圈子的activity
         tab2.setContent(intentB);
         tab3.setIndicator("个人信息");
         Intent intentC=new Intent();
