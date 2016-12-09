@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_avatar"
+        android:id="@+id/circlelist_user_ic"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="zhouhf"
+        android:layout_toRightOf="@+id/circlelist_user_ic"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/circlelist_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="活动："
+        android:layout_below="@+id/circlelist_name"
+        android:layout_alignStart="@+id/circlelist_name"
+        android:layout_marginTop="20dp"
+        android:id="@+id/circlelist_activity"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简介："
+        android:layout_below="@+id/circlelist_activity"
+        android:layout_alignStart="@+id/circlelist_activity"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>
