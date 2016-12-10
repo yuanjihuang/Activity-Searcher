@@ -18,7 +18,7 @@
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
         <activity android:name=".userInfoActivity"></activity>
-        <activity android:name=".Main2Activity">
+        <activity android:name=".circlelistActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivitySquare"></activity>
-        <activity android:name=".circlelistActivity"></activity>
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
