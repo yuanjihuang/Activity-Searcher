@@ -111,13 +111,13 @@ public class loginActivity extends AppCompatActivity {
                     /*
                     在这里更新UI
                      */
-                    char code=result.get(0).toString().charAt(0);
-                    System.out.println(result.get(0).toString());
+                    char code=result.get(0).charAt(0);
+                    System.out.println(result.get(0));
                     if(code=='0'){
                         Toast.makeText(getApplicationContext()," 登陆成功！", Toast.LENGTH_SHORT).show();
-                        Bundle bundle;
-
+                        CurrentAcct.AcctName = Name;//跨页面全局变量
                         Intent intent = new Intent(loginActivity.this,Main2Activity.class);
+
                         startActivity(intent);
                     }else if(code == '1'){
                         Toast.makeText(getApplicationContext(), "密码错误！", Toast.LENGTH_SHORT).show();

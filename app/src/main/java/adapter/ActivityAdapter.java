@@ -1,4 +1,4 @@
-package com.example.proj.zhaohuo;
+package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.proj.zhaohuo.ActivityInfo;
+import com.example.proj.zhaohuo.R;
 
 import java.util.List;
 
@@ -75,7 +78,7 @@ public class ActivityAdapter extends BaseAdapter {
         } else{
             viewHolder.follow.setImageResource(R.drawable.full_star);
         }
-        viewHolder.follow.setOnClickListener(new View.OnClickListener() {
+        /*viewHolder.follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(follow==0){
@@ -88,7 +91,8 @@ public class ActivityAdapter extends BaseAdapter {
                     list.set(position,temp);
                 }
             }
-        });
+        });*/
+        //把按钮放到活动详情中修改
         return convertView;
     }
 
