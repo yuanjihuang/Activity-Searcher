@@ -29,7 +29,6 @@ public class loginActivity extends AppCompatActivity {
     private String Name;
     private String Pwd;
     private void initialize(){
-
         exit = (TextView)findViewById(R.id.login_exit);         //退出界面
         register = (TextView)findViewById(R.id.login_register); //跳转到注册界面
         aboutUs = (TextView)findViewById(R.id.login_aboutUs); //跳转到人员信息

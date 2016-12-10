@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.proj.zhaohuo.userInfoActivity">
+    <LinearLayout
+        android:id="@+id/com_rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="17dp" >
+
+            <FrameLayout
+                android:id="@+id/com_userBackgroundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="188dp" >
+
+                <ImageView
+                    android:id="@+id/com_userBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/statusbar_bg" />
+
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/com_icon_sharow"
+                android:layout_width="match_parent"
+                android:layout_height="87dp"
+                android:layout_alignBottom="@id/com_userBackgroundLayout"
+                android:layout_marginBottom="-27dp"
+                android:layout_marginTop="15dp"
+                >
+
+                <ImageView
+                    android:id="@+id/com_user_detail_avatar"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_avatar" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/com_user_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/com_userBackgroundLayout"
+                android:layout_marginTop="30dp"
+                android:ellipsize="end"
+                android:text="xx社团"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/font_black_content"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/com_school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/com_userBackgroundLayout"
+                android:layout_marginTop="50dp"
+                android:text="xx大学"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:gravity="center"
+                android:textColor="@color/font_black_content"
+                android:textSize="18sp" />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/divider"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            android:id="@+id/com_user_info_listview"/>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/divider"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/com_more_listview"/>
+    </LinearLayout>
+</ScrollView>
