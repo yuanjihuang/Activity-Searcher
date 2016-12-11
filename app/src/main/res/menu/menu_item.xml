@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_follow"
+        android:icon="@drawable/unlike"
+        android:visible="true"
+        app:showAsAction="always"
+        android:title="关注"/>
+    <item
+        android:id="@+id/menu_comment"
+        android:icon="@drawable/comment"
+        app:showAsAction="always"
+        android:title="评论"/>
+    <item
+        android:id="@+id/sign_up"
+        app:showAsAction="never"
+        android:title="报名"/>
+</menu>

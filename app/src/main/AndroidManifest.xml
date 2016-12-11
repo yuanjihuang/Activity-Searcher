@@ -12,11 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".loginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
@@ -27,9 +22,20 @@
 
         </activity>
         <activity android:name=".circleDiscussionZone"/>
-        <activity android:name=".ActivitySquare"></activity>
+
         <activity android:name=".Main2Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".ActivitySquare" />
+        <activity
+            android:name=".actDetailActivity"
+            android:label="活动详情"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name=".commentActivity"></activity>
     </application>
 
 </manifest>
