@@ -33,21 +33,30 @@
 
             <RelativeLayout
                 android:id="@+id/icon_sharow"
-                android:layout_width="87dp"
+                android:layout_width="match_parent"
                 android:layout_height="87dp"
                 android:layout_alignBottom="@id/userBackgroundLayout"
                 android:layout_marginBottom="-27dp"
-                android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/user_detail_sharow"
-                 >
+
+                android:layout_alignEnd="@+id/UserIntro">
 
                 <ImageView
                     android:id="@+id/user_detail_avatar"
                     android:layout_width="83dp"
                     android:layout_height="83dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_avatar" />
+                    android:background="@drawable/ic_avatar"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/user_detail_sharow"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imageView" />
             </RelativeLayout>
 
             <TextView
@@ -63,17 +72,6 @@
                 android:textSize="18sp" />
 
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account"
-                android:textColor="@color/font_black_content"
-                android:textSize="24sp"
-                android:id="@+id/AcctName"
-                android:layout_alignBaseline="@+id/user_detail_name"
-                android:layout_alignBottom="@+id/user_detail_name"
-                android:layout_toEndOf="@+id/user_detail_name" />
             <ImageView
                 android:id="@+id/UserSex"
                 android:layout_width="wrap_content"
@@ -108,7 +106,18 @@
                 android:layout_below="@+id/user_detail_name"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textColor="@color/font_black_content"
+                android:textSize="24sp"
+                android:id="@+id/AcctName"
+                android:layout_above="@+id/UserIntro"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="15dp"

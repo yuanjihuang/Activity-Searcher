@@ -46,6 +46,14 @@
                     android:layout_height="83dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/ic_avatar" />
+                <ImageView
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/user_detail_sharow"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imageView" />
             </RelativeLayout>
 
             <TextView
