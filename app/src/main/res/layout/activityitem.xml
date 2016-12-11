@@ -13,45 +13,54 @@
         android:layout_margin="5dp"
         android:layout_marginLeft="10dp"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/comment"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/actImg"
+        android:layout_alignBottom="@+id/actName"
         android:layout_marginRight="10dp"
-        android:padding="5dp"
-        app:srcCompat="@android:drawable/sym_action_chat" />
+        android:src="@drawable/comment" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/follow"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_toLeftOf="@+id/comment"
-        android:layout_alignTop="@+id/actImg"
-        android:padding="5dp"
+        android:layout_alignTop="@+id/comment"
+        android:layout_alignBottom="@+id/comment"
         android:layout_marginRight="10dp"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        android:src="@drawable/unlike"/>
 
     <TextView
         android:id="@+id/actName"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="25dp"
         android:layout_toRightOf="@+id/actImg"
         android:layout_alignTop="@+id/actImg"
         android:layout_toLeftOf="@+id/follow"
+        android:layout_margin="5dp"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:text="Head"/>
 
     <TextView
         android:id="@+id/actInfo"
         android:text="TextView"
         android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_toRightOf="@+id/actImg"
+        android:layout_alignStart="@+id/actName"
+        android:layout_below="@+id/actName"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/actRemark"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/actImg"
-        android:layout_below="@+id/actName"
         android:layout_alignBottom="@+id/actImg"
-        android:layout_margin="5dp"/>
-
+        android:layout_alignStart="@+id/actName"
+        android:layout_below="@+id/actInfo"/>
 </RelativeLayout>

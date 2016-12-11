@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_comment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.proj.zhaohuo.commentActivity">
+
+    <ListView
+        android:id="@+id/commentList"
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:padding="10dp">
+    </ListView>
+
+
+        <Button
+            android:id="@+id/send"
+            android:background="@color/text_light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:text="发表"/>
+        <TextView
+            android:id="@+id/pl"
+            android:background="@color/text_light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/send"
+            android:layout_alignTop="@id/send"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"
+            android:paddingLeft="10dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="评论："/>
+        <EditText
+            android:id="@+id/input"
+            android:background="@color/text_light_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/pl"
+            android:layout_alignBottom="@id/pl"
+            android:layout_alignTop="@id/send"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:hint="输入评论"/>
+
+
+
+
+
+</RelativeLayout>
