@@ -7,12 +7,10 @@ package com.example.proj.zhaohuo;
 public class circleInfo{
     private int imgID;
     private String circleName;
-    private String relatedActivity;
     private String briIntro;
-    public circleInfo(int imgID, String circleName, String relatedActivity, String briIntro){
+    public circleInfo(int imgID, String circleName, String briIntro){
         this.imgID = imgID;
         this.circleName = circleName;
-        this.relatedActivity = relatedActivity;
         this.briIntro = briIntro;
     }
     public int getImgID(){
@@ -20,9 +18,6 @@ public class circleInfo{
     }
     public String getCircleName(){
         return circleName;
-    }
-    public String getRelatedActivity(){
-        return relatedActivity;
     }
     public String getBriIntro(){
         return briIntro;

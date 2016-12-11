@@ -1,15 +1,20 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.proj.zhaohuo.circleDiscussionZone;
 import com.example.proj.zhaohuo.circleInfo;
 import java.util.List;
 import com.example.proj.zhaohuo.R;
+import com.example.proj.zhaohuo.circlelistActivity;
+
 /**
  * Created by Administrator on 2016/12/10.
  */
@@ -17,9 +22,9 @@ import com.example.proj.zhaohuo.R;
 public class CircleAdapter extends BaseAdapter {
     private Context context;
     private List<circleInfo> list;
-    public CircleAdapter(Context context, List<circleInfo> personInformation){
+    public CircleAdapter(Context context, List<circleInfo> list){
         this.context = context;
-        this.list = personInformation;
+        this.list = list;
     }
     @Override
     public int getCount(){
@@ -47,12 +52,6 @@ public class CircleAdapter extends BaseAdapter {
         }
         return list.get(i).getCircleName();
     }
-    public String getRelatedActivity(int i){
-        if(list == null){
-            return null;
-        }
-        return list.get(i).getRelatedActivity();
-    }
     public String getBriIntro(int i){
         if(list == null){
             return null;
@@ -73,7 +72,6 @@ public class CircleAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.circleUserIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
             viewHolder.circleName = (TextView) convertView.findViewById(R.id.circle_name);
-            viewHolder.circleActivity = (TextView) convertView.findViewById(R.id.circle_activity);
             viewHolder.circleBriIntro = (TextView) convertView.findViewById(R.id.circle_briIntro);
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         }
@@ -83,14 +81,12 @@ public class CircleAdapter extends BaseAdapter {
         }
         viewHolder.circleUserIcon.setImageResource(list.get(i).getImgID());
         viewHolder.circleName.setText(list.get(i).getCircleName());
-        viewHolder.circleActivity.setText(list.get(i).getRelatedActivity());
         viewHolder.circleBriIntro.setText(list.get(i).getBriIntro());
         return convertView;
     }
     private class ViewHolder{
         public ImageView circleUserIcon;
         public TextView circleName;
-        public TextView circleActivity;
         public TextView circleBriIntro;
     }
 }

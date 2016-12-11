@@ -11,27 +11,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="zhouhf"
+        android:text="职来职往"
         android:layout_toRightOf="@+id/circle_user_ic"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/circle_name"
-        android:textSize="18sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="活动："
-        android:layout_below="@+id/circle_name"
-        android:layout_alignStart="@+id/circle_name"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:id="@+id/circle_activity"/>
+        android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="简介："
-        android:layout_below="@+id/circle_activity"
-        android:layout_alignStart="@+id/circle_activity"
+        android:layout_below="@+id/circle_name"
+        android:layout_alignStart="@+id/circle_name"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:textSize="18sp"
@@ -39,10 +30,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="详情"
+        android:text="进入讨论区"
         android:textSize="15sp"
         android:textColor="@color/colorPrimary"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/circle_briIntro"
-        />
+        android:layout_marginBottom="5dp"
+        android:id="@+id/enter_discussion"/>
 </RelativeLayout>

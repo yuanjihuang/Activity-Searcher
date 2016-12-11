@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/st0"
+        android:id="@+id/circle_commentator_ic"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/circle_commentator_name"
+        android:layout_toEndOf="@+id/circle_commentator_ic"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="zhouhf"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"/>
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="活动很棒"
+        android:id="@+id/circle_comment_content"
+        android:layout_below="@+id/circle_commentator_name"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/circle_commentator_name"
+        android:textSize="16sp" />
+
+</RelativeLayout>

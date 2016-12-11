@@ -26,6 +26,7 @@
         <activity android:name=".circlelistActivity">
 
         </activity>
+        <activity android:name=".circleDiscussionZone"/>
         <activity android:name=".ActivitySquare"></activity>
         <activity android:name=".Main2Activity">
         </activity>
