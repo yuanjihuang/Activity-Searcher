@@ -81,8 +81,8 @@ public class loginActivity extends AppCompatActivity {
                 Name = id.getText().toString();
                 Pwd = password.getText().toString();
                 try{
-                    Name = URLEncoder.encode(Name,"GB18030");//在try中将编码模式换为GB18030
-                    Pwd = URLEncoder.encode(Pwd,"GB18030");
+                    Name = URLEncoder.encode(Name,"utf-8");//在try中将编码模式换为utf-8
+                    Pwd = URLEncoder.encode(Pwd,"utf-8");
                     Log.d("Name Pwd",Name+" "+Pwd);
                 }catch (Exception e){}
                 //跳转到下一个界面（包含资料完善功能）
@@ -110,11 +110,13 @@ public class loginActivity extends AppCompatActivity {
                     /*
                     在这里更新UI
                      */
-                    char code=result.get(0).toString().charAt(0);
-                    System.out.println(result.get(0).toString());
+                    char code=result.get(0).charAt(0);
+                    System.out.println(result.get(0));
                     if(code=='0'){
                         Toast.makeText(getApplicationContext()," 登陆成功！", Toast.LENGTH_SHORT).show();
+                        CurrentAcct.AcctName = Name;//跨页面全局变量
                         Intent intent = new Intent(loginActivity.this,Main2Activity.class);
+
                         startActivity(intent);
                     }else if(code == '1'){
                         Toast.makeText(getApplicationContext(), "密码错误！", Toast.LENGTH_SHORT).show();

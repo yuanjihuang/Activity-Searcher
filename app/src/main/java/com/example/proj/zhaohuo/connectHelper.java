@@ -2,26 +2,30 @@ package com.example.proj.zhaohuo;
 
 import android.util.Log;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by Yelluw on 2016/12/8.
  */
 public class ConnectHelper {
-    public String url = "http://172.18.56.73:8300/project2/";
+    public String url = "http://192.168.153.1:8300/project2/";
     public ConnectHelper(){
     }
     public String readIt(InputStream stream) throws IOException,UnsupportedEncodingException
     {
-        String result = IOUtils.toString(stream, "GB18030");
+        String result = IOUtils.toString(stream, "utf-8");
         return result;
     }
     //连接网络函数，在异步线程中调用
