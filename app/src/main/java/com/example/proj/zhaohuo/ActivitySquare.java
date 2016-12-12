@@ -152,9 +152,14 @@ public class ActivitySquare extends AppCompatActivity {
                     for(int i=0; i<ActList.length(); i++){
                         try{
                             JSONObject oj = ActList.getJSONObject(i);
-                            int ID = oj.getInt("ActID");
-                            int flag = favorite.contains(ID)?1:0;//判断是否为喜爱活动
-                            ActivityInfo temp = new ActivityInfo(imgID[i],imgUrl[i],oj.getString("ActName"),info[i],oj.getString("ActPlace"),flag);
+                            String tem = "st" + oj.getInt("ActID");
+                            imgID[i] = getResources().getIdentifier(tem,"drawable",getPackageName());
+                            imgUrl[i] = oj.getString("ActUrl");
+                            name[i] = oj.getString("ActName");
+                            info[i] = oj.getString("ActInfo");
+                            remark[i] = oj.getString("ActRemark");
+                            follow[i] = favorite.contains(imgID[i])?1:0;//判断是否为喜爱活动
+                            ActivityInfo temp = new ActivityInfo(imgID[i],imgUrl[i],name[i],info[i],remark[i],follow[i]);
                             list.add(temp);
                         }catch (Exception e){}
                     }

@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,14 +29,14 @@ public class ActivityAdapter extends BaseAdapter {
     private Context context;
     private int currentFollow;
 
-    public ActivityAdapter(Context context, List<ActivityInfo> list){
+    public ActivityAdapter(Context context, List<ActivityInfo> list) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        if(list == null){
+        if (list == null) {
             return 0;
         }
         return list.size();
@@ -46,7 +44,7 @@ public class ActivityAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        if(list == null){
+        if (list == null) {
             return null;
         }
         return list.get(position);
@@ -61,8 +59,8 @@ public class ActivityAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup viewGroup) {
         View convertView;
         final ViewHolder viewHolder;
-        if(view == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.activityitem,null);
+        if (view == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.activityitem, null);
             viewHolder = new ViewHolder();
             viewHolder.img = (ImageView) convertView.findViewById(R.id.actImg);
             viewHolder.nameText = (TextView) convertView.findViewById(R.id.actName);
@@ -87,31 +85,31 @@ public class ActivityAdapter extends BaseAdapter {
         viewHolder.nameText.setText(name);
         viewHolder.infoText.setText(info);
         viewHolder.remarkText.setText(remark);
-        if(follow==0){
+        if (follow == 0) {
             viewHolder.follow.setImageResource(R.drawable.unlike);
-        } else{
+        } else {
             viewHolder.follow.setImageResource(R.drawable.like);
         }
         viewHolder.follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(follow==0){
+                if (follow == 0) {
                     viewHolder.follow.setImageResource(R.drawable.like);
                     currentFollow = 1;
-                    ActivityInfo temp = new ActivityInfo(imgID,imgUrl,name,info,remark,1);
-                    list.set(position,temp);
-                } else{
+                    ActivityInfo temp = new ActivityInfo(imgID, imgUrl, name, info, remark, 1);
+                    list.set(position, temp);
+                } else {
                     viewHolder.follow.setImageResource(R.drawable.unlike);
                     currentFollow = 0;
-                    ActivityInfo temp = new ActivityInfo(imgID,imgUrl,name,info,remark,0);
-                    list.set(position,temp);
+                    ActivityInfo temp = new ActivityInfo(imgID, imgUrl, name, info, remark, 0);
+                    list.set(position, temp);
                 }
             }
         });
         viewHolder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,commentActivity.class);
+                Intent intent = new Intent(context, commentActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -126,17 +124,18 @@ public class ActivityAdapter extends BaseAdapter {
         public ImageView follow;
         public ImageView comment;
     }
-    public int getCurrentFollow(){
+
+    public int getCurrentFollow() {
         return currentFollow;
     }
 
-    public Bitmap getHttpBitmap(String url){
+    public Bitmap getHttpBitmap(String url) {
         URL myFileURL;
-        Bitmap bitmap=null;
-        try{
+        Bitmap bitmap = null;
+        try {
             myFileURL = new URL(url);
             //获得连接
-            HttpURLConnection conn=(HttpURLConnection)myFileURL.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) myFileURL.openConnection();
             //设置超时时间为6000毫秒，conn.setConnectionTiem(0);表示没有时间限制
             conn.setConnectTimeout(6000);
             //连接设置获得数据流
@@ -151,7 +150,7 @@ public class ActivityAdapter extends BaseAdapter {
             bitmap = BitmapFactory.decodeStream(is);
             //关闭数据流
             is.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return bitmap;

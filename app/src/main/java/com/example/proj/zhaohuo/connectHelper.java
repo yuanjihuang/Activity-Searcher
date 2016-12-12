@@ -20,7 +20,7 @@ import org.json.JSONObject;
  * Created by Yelluw on 2016/12/8.
  */
 public class ConnectHelper {
-    public String url = "http://192.168.153.1:8300/project2/";
+    public String url = "http://172.18.56.73:8300/project2/";
     public ConnectHelper(){
     }
     public String readIt(InputStream stream) throws IOException,UnsupportedEncodingException
