@@ -11,8 +11,8 @@ import android.view.animation.AnimationUtils;
  */
 
 public class startActivity extends AppCompatActivity{
-    private final int SPLASH_DISPLAY_LENGHT = 4500; // 两秒后进入系统
-    private final int SPLASH_DISPLAY_LENGHT1 = 2000; // 两秒后进入系统
+    private final int SPLASH_DISPLAY_LENGHT = 4500; // 4.5秒后进入系统
+    private final int SPLASH_DISPLAY_LENGHT1 = 2000; // 两秒后下一行字
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

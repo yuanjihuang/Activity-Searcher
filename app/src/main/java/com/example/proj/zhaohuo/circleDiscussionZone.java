@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +31,7 @@ public class circleDiscussionZone extends AppCompatActivity {
     ListView circleCommentListView;
     Button commentBtn;
     TextView myComment;
+    ImageView editImage;
     Button commitContent, cancelCommitContent;
     List<circleCommentatorInfo> circleCommentatorInfos  = new ArrayList<>();
     CircleDiscussionZoneAdapter circleDiscussionZoneAdapter;
@@ -38,10 +42,27 @@ public class circleDiscussionZone extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         circleCommentListView = (ListView) findViewById(R.id.circle_comment_listView);
         commentBtn = (Button) findViewById(R.id.commentCircleBtn);
+        editImage = (ImageView) findViewById(R.id.editImageCircleBtn);
         for(int i=0; i<4; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
         }
+    }
+    public void setListViewHeight(ListView listView){
+        ListAdapter listAdapter = listView.getAdapter();
+        if(listAdapter == null){
+            return;
+        }
+        int totalHeight = 0;
+        for(int i = 0; i < listAdapter.getCount(); i++){
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()-1));
+        params.height += 5;
+        listView.setLayoutParams(params);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +84,14 @@ public class circleDiscussionZone extends AppCompatActivity {
         }
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleCommentatorInfos);
         circleCommentListView.setAdapter(circleDiscussionZoneAdapter);
+        setListViewHeight(circleCommentListView);
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commentBtn.setVisibility(View.VISIBLE);
+                commentBtn.setEnabled(true);
+            }
+        });
         commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

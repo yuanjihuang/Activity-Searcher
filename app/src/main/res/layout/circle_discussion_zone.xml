@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:fadingEdge="vertical">
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -18,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:background="@color/gray"/>
+            android:src="@drawable/sysu"/>
     </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -34,51 +43,28 @@
          android:text="活动简介：这是个很吊的活动,真的很吊的活动"
          android:layout_gravity="center"
          android:layout_marginTop="10dp"/>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="250dp">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="说点什么"
-            android:layout_marginLeft="300dp"
-            android:id="@+id/commentCircleBtn"/>
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_alignBaseline="@+id/commentCircleBtn"
-            android:layout_alignBottom="@+id/commentCircleBtn"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="53dp"
-            android:id="@+id/addCircleContent"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:background="@color/white"
+            android:text="评论"
+            android:textSize="15sp"
             android:visibility="invisible"
-            android:hint="请输入评论内容"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/addCircleContent"
-            android:layout_marginLeft="200dp"
-            android:id="@+id/btnLinearLayout"
-            android:visibility="invisible">
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:id="@+id/commitContent"
-                android:text="确定"
-                android:textSize="10sp"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:id="@+id/cancelCommitContent"
-                android:text="取消"
-                android:textSize="10sp"/>
-        </LinearLayout>
+            android:enabled="false"
+            android:id="@+id/commentCircleBtn"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/edit_ic"
+            android:id="@+id/editImageCircleBtn" />
 
+    </LinearLayout>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,10 +73,6 @@
             android:id="@+id/circle_comment_listView"
             android:divider="@color/white"
             android:listSelector="@color/white"
-            android:layout_below="@+id/addCircleContent"
-            android:layout_centerHorizontal="true">
-        </ListView>
-
-    </RelativeLayout>
-
+            android:layout_marginTop="10dp" />
 </LinearLayout>
+</ScrollView>
