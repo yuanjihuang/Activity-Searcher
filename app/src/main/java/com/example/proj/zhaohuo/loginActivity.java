@@ -1,5 +1,6 @@
 package com.example.proj.zhaohuo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class loginActivity extends AppCompatActivity {
+    private ProgressDialog pd1;
     private TextView exit;
     private TextView register;
     private TextView aboutUs;
@@ -38,6 +40,9 @@ public class loginActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.login_button);   //登录按钮
         connectHelper= new ConnectHelper();
         check_login = connectHelper.url+"Service/check_login.jsp";
+
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +91,9 @@ public class loginActivity extends AppCompatActivity {
                     Log.d("Name Pwd",Name+" "+Pwd);
                 }catch (Exception e){}
                 //跳转到下一个界面（包含资料完善功能）
+                pd1 = ProgressDialog.show(loginActivity.this,null, "登录中……");
                 new DownloadWebpageText().execute(check_login+"?Name="+Name+"&Pwd="+Pwd);//异步线程调用，参数直接通过?+parameter=的形式传入
+
             }
         });
     }
@@ -103,6 +110,7 @@ public class loginActivity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(List<String> result) {
+            pd1.dismiss();
             if(result != null){
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
@@ -110,6 +118,7 @@ public class loginActivity extends AppCompatActivity {
                     /*
                     在这里更新UI
                      */
+
                     char code=result.get(0).charAt(0);
                     System.out.println(result.get(0));
                     if(code=='0'){

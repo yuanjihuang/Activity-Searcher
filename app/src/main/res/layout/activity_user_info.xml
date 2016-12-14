@@ -128,15 +128,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setUserInfo">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="48dp"
-                android:text="个人信息"
-                android:paddingLeft="10dp"
-                android:gravity="center_vertical"
-                android:textColor="@color/font_gray"
-                android:textSize="16sp"
-                android:id="@+id/textView" />
 
             <ImageView
                 android:layout_width="16dp"
@@ -146,6 +137,18 @@
                 android:background="@drawable/user_home_arrow"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:text="个人信息"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/font_gray"
+                android:textSize="16sp"
+                android:id="@+id/textView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
         <ImageView
             android:layout_width="fill_parent"

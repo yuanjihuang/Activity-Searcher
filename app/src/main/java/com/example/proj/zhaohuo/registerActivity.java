@@ -1,5 +1,6 @@
 package com.example.proj.zhaohuo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -35,6 +36,7 @@ import java.util.List;
 public class registerActivity extends AppCompatActivity{
 
     //private static final String[] type ={"个人","社团"};
+    private ProgressDialog pd1;
     private String Kind = "false";
     private String Name;
     private String Pwd;
@@ -104,6 +106,7 @@ public class registerActivity extends AppCompatActivity{
                           Kind = URLEncoder.encode(Kind,"GB18030");
                           Log.d("Name Pwd Kind",Name+" "+Pwd+" "+Kind);
                       }catch (Exception e){}
+                      pd1 = ProgressDialog.show(registerActivity.this,null, "正在注册……");
                       new DownloadWebpageText().execute(check_sign_up+"?Name="+Name+"&Pwd="+Pwd+"&Kind="+Kind);//异步线程调用，参数直接通过?+parameter=的形式传入
                   }
                   else{
@@ -135,6 +138,7 @@ public class registerActivity extends AppCompatActivity{
         }
         @Override
         protected void onPostExecute(List<String> result) {
+            pd1.dismiss();
             if(result != null){
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值",Toast.LENGTH_SHORT).show();

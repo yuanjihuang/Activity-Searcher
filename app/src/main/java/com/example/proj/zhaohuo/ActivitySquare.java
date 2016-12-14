@@ -22,9 +22,10 @@ import java.util.List;
 import java.util.Set;
 
 import adapter.ActivityAdapter;
-
+import android.app.ProgressDialog;
 
 public class ActivitySquare extends AppCompatActivity {
+    private ProgressDialog pd1;
     private int[] imgID = new int[11];
     private int[] follow = new int[11];
     private String[] name;
@@ -47,7 +48,11 @@ public class ActivitySquare extends AppCompatActivity {
         connectHelper = new ConnectHelper();
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
         new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
-
+        //设置加载中对象
+        pd1 = new ProgressDialog(ActivitySquare.this);
+        pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pd1.setMessage("努力加载中...");
+        pd1.setCancelable(true);
         for(int i=0; i<11; i++){
             String s = "st"+i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
@@ -109,6 +114,7 @@ public class ActivitySquare extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pd1 = ProgressDialog.show(ActivitySquare.this,null, "正在加载活动……");
         new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -130,6 +136,7 @@ public class ActivitySquare extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<String> result) {
             if(result != null){
+                pd1.dismiss();
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
                 }else{

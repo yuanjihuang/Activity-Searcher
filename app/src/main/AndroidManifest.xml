@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".startActivity">
+        </activity>
+        <activity android:name=".PostMsgActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +24,7 @@
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
         <activity android:name=".userInfoActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:label="个人信息"></activity>
+            ></activity>
         <activity android:name=".communityInfoActivity">
         </activity>
         <activity android:name=".circlelistActivity"></activity>
@@ -39,7 +40,9 @@
         </activity>
         <activity android:name=".loginActivity" >
         </activity>
-        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".UserActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="个人信息"></activity>
     </application>
 
 </manifest>

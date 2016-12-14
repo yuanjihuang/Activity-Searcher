@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/sysu"/>
+            />
     </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/edit_ic"
+
             android:id="@+id/editImageCircleBtn"
             android:layout_toRightOf="@+id/commentCircleBtn"
             android:layout_marginLeft="10dp"
