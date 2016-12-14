@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="386dp"
             android:paddingBottom="17dp" >
 
             <FrameLayout
@@ -31,15 +31,75 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/user_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userBackgroundLayout"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="44dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/font_black_content"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:gravity="center_horizontal"
+                android:text="大家好，我是炮王裕丰,我最喜欢的是就是和女同学交流感情。"
+                android:background="@null"
+                android:layout_marginLeft="40dp"
+                android:paddingTop="10dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:ems="10"
+                android:id="@+id/UserIntro"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textColor="@color/font_black_content"
+                android:textSize="24sp"
+                android:id="@+id/AcctName"
+                android:gravity="center_horizontal"
+                android:layout_alignTop="@+id/user_detail_name"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/icon_sharow" />
+
+            <ImageView
+                android:id="@+id/UserSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sex_boy"
+
+                android:layout_below="@+id/AcctKind"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/UserIntro" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kind"
+                android:textColor="@color/gray"
+                android:id="@+id/AcctKind"
+                android:layout_below="@+id/AcctName"
+                android:layout_centerHorizontal="true" />
+
             <RelativeLayout
                 android:id="@+id/icon_sharow"
                 android:layout_width="match_parent"
                 android:layout_height="87dp"
-                android:layout_alignBottom="@id/userBackgroundLayout"
-                android:layout_marginBottom="-27dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="18dp"
 
-                android:layout_alignEnd="@+id/UserIntro">
+                android:layout_above="@+id/AcctName"
+                android:layout_centerHorizontal="true">
 
                 <ImageView
                     android:id="@+id/user_detail_avatar"
@@ -58,83 +118,43 @@
                     android:layout_centerHorizontal="true"
                     android:id="@+id/imageView" />
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/user_detail_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userBackgroundLayout"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="44dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/font_black_content"
-                android:textSize="18sp" />
-
-
-            <ImageView
-                android:id="@+id/UserSex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_sex_boy"
-                android:layout_alignBottom="@+id/AcctName"
-                android:layout_toEndOf="@+id/AcctKind"
-                android:layout_alignTop="@+id/AcctKind" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="kind"
-                android:textColor="@color/gray"
-                android:id="@+id/AcctKind"
-                android:layout_marginStart="20dp"
-                android:layout_alignBottom="@+id/AcctName"
-                android:layout_toEndOf="@+id/AcctName" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:inputType="textPersonName"
-                android:gravity="top"
-                android:text="这是这个sb的简介。"
-                android:background="@null"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:textSize="16sp"
-                android:ems="10"
-                android:id="@+id/UserIntro"
-                android:layout_below="@+id/user_detail_name"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account"
-                android:textColor="@color/font_black_content"
-                android:textSize="24sp"
-                android:id="@+id/AcctName"
-                android:layout_above="@+id/UserIntro"
-                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="15dp"
             android:background="@drawable/divider"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setUserInfo">
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:text="个人信息"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/font_gray"
+                android:textSize="16sp"
+                android:id="@+id/textView" />
 
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/user_home_arrow"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="192dp"
             android:id="@+id/user_info_listview"/>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="15dp"
-            android:background="@drawable/divider"/>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:id="@+id/more_listview"/>
     </LinearLayout>
 </ScrollView>

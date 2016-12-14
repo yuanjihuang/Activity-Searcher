@@ -11,26 +11,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".startActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".startActivity"></activity>
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
-        <activity android:name=".userInfoActivity">
+        <activity android:name=".userInfoActivity"></activity>
+        <activity android:name=".communityInfoActivity">
         </activity>
-        <activity android:name=".circlelistActivity">
-
-        </activity>
-        <activity android:name=".circleDiscussionZone"/>
-        <activity android:name=".ActivitySquare"></activity>
+        <activity android:name=".circlelistActivity"></activity>
+        <activity android:name=".circleDiscussionZone" />
+        <activity android:name=".ActivitySquare" />
         <activity android:name=".Main2Activity">
         </activity>
-        <activity android:name=".loginActivity"/>
+        <activity android:name=".loginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserActivity"></activity>
     </application>
 
 </manifest>
