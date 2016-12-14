@@ -37,7 +37,7 @@ public class circleDiscussionZone extends AppCompatActivity {
     CircleDiscussionZoneAdapter circleDiscussionZoneAdapter;
     int[] imgID = new int[4];
     String[] name = {"zhouHF", "huangYJ", "HeYF", "HongZZ"};
-    String[] commentContent = {"那你很棒哦", "那你很棒哦", "那你很棒哦", "那你很棒哦"};
+    String[] commentContent = {"有谁要一起吗~", "@zhouHF 一起啊", "看起来好像很有趣哦，报名玩玩", "@huangYJ 卧槽你web写完了？"};
     public void initialize(){
         toolbar = (Toolbar) findViewById(R.id.circle_discussion_toolbar);
         circleCommentListView = (ListView) findViewById(R.id.circle_comment_listView);
@@ -72,7 +72,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         initialize();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回
-        getSupportActionBar().setTitle("讨论区");
+        getSupportActionBar().setTitle("互动区");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
