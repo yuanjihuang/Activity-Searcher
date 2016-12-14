@@ -76,7 +76,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(circleDiscussionZone.this, circlelistActivity.class);
+                Intent intent = new Intent(circleDiscussionZone.this, Main2Activity.class);
                 startActivity(intent);
             }
         });

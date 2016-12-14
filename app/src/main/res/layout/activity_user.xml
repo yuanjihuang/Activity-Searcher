@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.proj.zhaohuo.UserActivity">
+<LinearLayout
+    android:id="@+id/activity_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:id="@+id/userInfo"
+        android:clickable="true">
+            <RelativeLayout
+                android:id="@+id/icon_sharow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_width="63dp"
+                    android:layout_height="63dp"
+                    android:background="@drawable/ic_avatar"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/user_detail_sharow"
+                    android:id="@+id/shadow"
+                    android:layout_alignBottom="@+id/user_detail_avatar"
+                    android:layout_alignStart="@+id/user_detail_avatar" />
+            </RelativeLayout>
+
+        <TextView
+            android:text="何裕丰"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:textColor="@color/black"
+            android:id="@+id/UserName"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/icon_sharow"
+            android:layout_marginStart="18dp" />
+
+        <TextView
+            android:text="大家好，我是炮王裕丰。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/font_gray"
+            android:id="@+id/UserIntro"
+            android:layout_below="@+id/UserName"
+            android:layout_alignStart="@+id/UserName" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user_home_arrow"
+            android:layout_alignBottom="@+id/icon_sharow"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/divider"
+        android:id="@+id/imageView2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2">
+
+        <Button
+            android:text="我的圈子"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myCircle" />
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/divider" />
+        <Button
+            android:text="收藏活动"
+            android:layout_weight="0.5"
+            android:background="@color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/myFavorite" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"
+        android:background="@drawable/divider"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView3" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:id="@+id/more_listview"/>
+</LinearLayout>
+</ScrollView>

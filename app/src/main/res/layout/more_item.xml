@@ -4,16 +4,16 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/userdetail_like_text"
+        android:id="@+id/more_item"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:ellipsize="end"
-        android:singleLine="true"
-        android:text="我的圈子"
-        android:textColor="#222222"
+        android:paddingLeft="10dp"
+        android:text="更多信息"
+        android:textColor="@color/black"
         android:clickable="true"
         android:focusable="true"
         android:textSize="16sp" />
@@ -21,6 +21,8 @@
     <ImageView
         android:layout_width="16dp"
         android:layout_height="16dp"
+        android:layout_marginEnd="15dp"
         android:layout_gravity="center_vertical"
+        android:id="@+id/arrow"
         android:background="@drawable/user_home_arrow" />
 </LinearLayout>

@@ -31,7 +31,7 @@ public class Main2Activity extends TabActivity {
         tab2.setContent(intentB);
         tab3.setIndicator("个人信息");
         Intent intentC=new Intent();
-        intentC.setClass(Main2Activity.this,userInfoActivity.class );//第二个参数填上个人信息的activity
+        intentC.setClass(Main2Activity.this,UserActivity.class );//第二个参数填上个人信息的activity
         tab3.setContent(intentC);
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);

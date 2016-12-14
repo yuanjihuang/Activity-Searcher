@@ -23,9 +23,6 @@ import java.util.Set;
 
 import adapter.ActivityAdapter;
 
-/**
- * Created by Eafun on 2016/12/8.
- */
 
 public class ActivitySquare extends AppCompatActivity {
     private int[] imgID = new int[11];
@@ -34,6 +31,7 @@ public class ActivitySquare extends AppCompatActivity {
     private String[] info;
     private String[] remark;
     private String[] imgUrl;
+    private String[] actUrl;
     private int resultFollow;
     private ListView listView;
     private ConnectHelper connectHelper;
@@ -48,26 +46,23 @@ public class ActivitySquare extends AppCompatActivity {
         setContentView(R.layout.activitylist);
         connectHelper = new ConnectHelper();
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
-        new DownloadWebpageText().execute(getDataUrl+"?Name="+"zhangsan");
+        new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
 
         for(int i=0; i<11; i++){
             String s = "st"+i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
             follow[i] = i%2;
         }
-        name = new String[]{"五克拉·倒计时","万象丨演讲终战，谁执牛耳？","宿舍文化俱乐部","YES GO行动 第四期 招募启动","招新 | 加入我们，成为最可爱的人","走进职场","征文比赛","决战来袭|是梦想和青春","潜能待定义","25天速配","2017 中国实验室项目正式接受报名"};
-        info = new String[]{"相逢的人会再相逢","诸位王公，准备好参加这场盛大的宴会了吗？","大学宿舍承载着大学生活太多太多的记忆，让我们不得不去重视","这可能是中国大陆最接近教育本质的成长行动","中大Din的七代目招新，在此时此刻，正式拉开序幕","职协带你去参访第三期:走入【网易有道】","“一忆职涯，一眼之间，一念执着”","激动人心的决战之夜即将来临，让我们共同期待最好的你们！","猎星决赛暨维纳斯歌友会观赏指南","这个假期，来一次“印”象最深的跨国实习","岭南MBA王牌项目中的王牌"};
-        remark = new String[]{"2016.12.09 19:00 工学院小广场","12月8日19:00 公共教学楼B栋204","2016年12月","2016年9月-12月 广州|中山","","12月8日9:30-11:30 广州网易大厦","截稿时间：2016年12月15日24时","12月10日、11日 风雨球场","12月10日18:30 风雨球场前舞台","2016.12.1-2017.3.9 印度Adglobal360","报名截止时间：2016年12月22日17:00"};
-        final String actUrl[] = {"https://mp.weixin.qq.com/s/R61BcilPrrhe3Q6fhk6fZw","https://mp.weixin.qq.com/s/jPYeAbAxi6pzgDvC0XsN0A","https://mp.weixin.qq.com/s/kEC45zpPAqWjdsFjpYBf7w","https://mp.weixin.qq.com/s/qma4qGrF0NZlK22r22dcmg","https://mp.weixin.qq.com/s/hzS2OX29mkpVjKqpkOTG0Q","https://mp.weixin.qq.com/s/H3s6EuNhgH3XbUY0tqdZJg","https://mp.weixin.qq.com/s/0anqJwCEjoB4C0YA5Ewaig","https://mp.weixin.qq.com/s/sRXp4xgkKQdMyG0QDc-8eQ","https://mp.weixin.qq.com/s/NyI1VzaQgL6VQju6cnOeww","https://mp.weixin.qq.com/s/l84m_cx-5Gb9PxVGDaYpHw","https://mp.weixin.qq.com/s/3CqnLrHCSus7jxHUkOKVTA"};
-        imgUrl = new String[]{"http://ww1.sinaimg.cn/mw1024/863448e2gw1faljvpzj9gj2050050747.jpg","http://ww2.sinaimg.cn/mw1024/863448e2gw1faljvqmbiij20hs0hsaax.jpg","http://ww1.sinaimg.cn/mw1024/863448e2gw1faljvr758vj20hs0hst9x.jpg","http://ww2.sinaimg.cn/mw1024/863448e2gw1faljvs1xppj20hs0hsgo5.jpg","http://ww4.sinaimg.cn/mw1024/863448e2gw1faljvsg5ijj205f05fjrh.jpg","http://ww2.sinaimg.cn/mw1024/863448e2gw1faljvt7auij20hs0hsdg7.jpg","http://ww3.sinaimg.cn/mw1024/863448e2gw1faljvu1ujkj20hs0hsdic.jpg","http://ww1.sinaimg.cn/mw1024/863448e2gw1faljvucsm1j20hs0hsgna.jpg","http://ww4.sinaimg.cn/mw1024/863448e2gw1faljvv14uij20hs0hsjt9.jpg","http://ww3.sinaimg.cn/mw1024/863448e2gw1falk65xv0dj20b40b4q3v.jpg","http://ww2.sinaimg.cn/mw1024/863448e2gw1falk663x01j20hs0hswgl.jpg"};
+
+        name = new String[11];
+        info = new String[11];
+        remark = new String[11];
+        actUrl = new String[11];
+        imgUrl = new String[11];
         list = new ArrayList<>();
-        for(int i=0; i<11; i++){
-            ActivityInfo temp = new ActivityInfo(imgID[i],imgUrl[i],name[i],info[i],remark[i],follow[i]);
-            list.add(temp);
-        }
         adapter = new ActivityAdapter(this,list);
         listView = (ListView) findViewById(R.id.activityList);
-        listView.setAdapter(adapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -115,7 +110,9 @@ public class ActivitySquare extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
-        Log.d("request","zhangsan");
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        Log.d("request",CurrentAcct.AcctName);
     }
 
     private class DownloadWebpageText extends AsyncTask<String,Integer,List<String>> {
@@ -164,6 +161,7 @@ public class ActivitySquare extends AppCompatActivity {
                         }catch (Exception e){}
                     }
                     adapter.notifyDataSetChanged();
+
                     //JSONArray FavoriteList = JsonUtils.parseAct(result.get(0));
                     /*
                     在这里更新UI

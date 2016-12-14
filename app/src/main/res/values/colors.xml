@@ -10,6 +10,7 @@
     <color name="light_red">#ffff4242</color>
     <color name="font_gray">#999999</color>
     <color name="gray">#ff999999</color>
+    <color name="transparent">#00999999</color>
     <!-- 状态栏 -->
     <color name="statusbar_bg">#0089E4</color>
     <color name="btn_dis">#81BAFF</color>
