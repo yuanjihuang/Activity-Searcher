@@ -39,6 +39,7 @@
         </activity>
         <activity android:name=".commentActivity"></activity>
         <activity android:name=".PostMsgActivity"></activity>
+        <activity android:name=".postDetailActivity"/>
     </application>
 
 </manifest>

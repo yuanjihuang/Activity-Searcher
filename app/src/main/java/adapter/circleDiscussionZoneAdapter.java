@@ -1,104 +1,70 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proj.zhaohuo.R;
-import com.example.proj.zhaohuo.circleCommentatorInfo;
-import com.example.proj.zhaohuo.circleDiscussionZone;
-import com.example.proj.zhaohuo.circlelistActivity;
+import com.example.proj.zhaohuo.circleFollowerInfo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2016/12/11.
  */
 
-public class CircleDiscussionZoneAdapter extends BaseAdapter {
-    private Context context;
-    private List<circleCommentatorInfo> list;
-
-    public CircleDiscussionZoneAdapter(Context context, List<circleCommentatorInfo> list) {
-        this.context = context;
-        this.list = list;
+public class CircleDiscussionZoneAdapter extends RecyclerView.Adapter<CircleDiscussionZoneAdapter.ViewHolder> {
+    private ArrayList<circleFollowerInfo> follower_list;
+    private LayoutInflater mInflater;
+    public interface OnItemClickListener{
+        void onItemClick(View view, int position, circleFollowerInfo circleFollowerInfo);
     }
-
+    private OnItemClickListener mOnItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+    //构造函数，传参为context和一个ArrayList
+    public CircleDiscussionZoneAdapter(Context context, ArrayList<circleFollowerInfo> items) {
+        super();
+        follower_list = items;
+        mInflater = LayoutInflater.from(context);
+    }
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View itemView) {
+            super(itemView);
+        }
+        ImageView circle_follower_ic;
+        TextView circle_follower_name;
+    }
     @Override
-    public int getCount() {
-        if (list == null) {
-            return 0;
-        }
-        return list.size();
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+        View view = mInflater.inflate(R.layout.circle_follower_item, viewGroup, false);
+        ViewHolder holder = new ViewHolder(view);
+        holder.circle_follower_ic = (ImageView) view.findViewById(R.id.circle_follower_ic);
+        holder.circle_follower_name =(TextView)view.findViewById(R.id.circle_follower_name);
+        return holder;
     }
-
     @Override
-    public Object getItem(int i) {
-        if (list == null) {
-            return null;
+    public void onBindViewHolder(final ViewHolder viewHolder, final int i){
+        circleFollowerInfo tmp = follower_list.get(i);
+        viewHolder.circle_follower_ic.setImageResource(tmp.getCommentatorImgID());
+        viewHolder.circle_follower_name.setText(tmp.getCommentatorName());
+        if (mOnItemClickListener != null) {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    mOnItemClickListener.onItemClick(viewHolder.itemView, i, follower_list.get(i));
+                }
+            });
         }
-        return list.get(i);
     }
-
-    public int getCommentatorImgID(int i) {
-        if (list == null) {
-            return 0;
-        }
-        return list.get(i).getCommentatorImgID();
-    }
-
-    public String getCommentatorName(int i) {
-        if (list == null) {
-            return null;
-        }
-        return list.get(i).getCommentatorName();
-    }
-
-    public String getCommentContent(int i) {
-        if (list == null) {
-            return null;
-        }
-        return list.get(i).getCommentContent();
-    }
-
     @Override
-    public long getItemId(int i) {
-        return i;
+    public int getItemCount(){
+        return follower_list.size();
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View convertView;
-        CircleDiscussionZoneAdapter.ViewHolder viewHolder;
-        if (view == null) {   //view为空时才全部加载布局
-            //从item这个layout（使用adapter的）来传入需要的context
-            convertView = LayoutInflater.from(context).inflate(R.layout.circle_discussion_zone_item, null);
-            viewHolder = new CircleDiscussionZoneAdapter.ViewHolder();
-            viewHolder.commentatorIcon = (ImageView) convertView.findViewById(R.id.circle_commentator_ic);
-            viewHolder.commentatorName = (TextView) convertView.findViewById(R.id.circle_commentator_name);
-            viewHolder.commentContent = (TextView) convertView.findViewById(R.id.circle_comment_content);
-
-            convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
-        } else {
-            convertView = view;
-            viewHolder = (CircleDiscussionZoneAdapter.ViewHolder) convertView.getTag();
-        }
-        viewHolder.commentatorIcon.setImageResource(list.get(i).getCommentatorImgID());
-        viewHolder.commentatorName.setText(list.get(i).getCommentatorName());
-        viewHolder.commentContent.setText(list.get(i).getCommentContent());
-        return convertView;
-    }
-
-    private class ViewHolder {
-        public ImageView commentatorIcon;
-        public TextView commentatorName;
-        public TextView commentContent;
-        public Button enterDiscussion;
-    }
 }

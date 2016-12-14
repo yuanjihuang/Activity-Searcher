@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="进入讨论区"
+        android:text="进入畅谈区"
         android:textSize="15sp"
         android:textColor="@color/colorPrimary"
         android:layout_alignParentRight="true"

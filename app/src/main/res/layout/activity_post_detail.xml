@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/post_detail_toolbar"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="?attr/actionBarSize" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/ic_avatar"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/post_detail_ic_owner"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="孙哔哔"
+                    android:id="@+id/post_detail_name_owner"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_below="@+id/post_detail_ic_owner"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(楼主)"
+                    android:layout_below="@id/post_detail_name_owner"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorPrimary"/>
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="好久没打过球了，之前在省队打过一阵子，有没有人要一起的啊"
+                android:id="@+id/post_detail_content"
+                android:textSize="18sp"
+                android:layout_alignTop="@+id/post_detail_ic_owner"
+                android:layout_toEndOf="@+id/post_detail_ic_owner"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1.02" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginTop="5dp"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/post_comment_listView"
+            android:layout_marginTop="10dp">
+
+        </ListView>
+    </LinearLayout>
+</ScrollView>

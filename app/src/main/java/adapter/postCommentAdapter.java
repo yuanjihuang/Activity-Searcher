@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proj.zhaohuo.R;
-import com.example.proj.zhaohuo.circleDiscussionZone;
 import com.example.proj.zhaohuo.circleInfo;
 
 import java.util.List;
@@ -20,25 +18,13 @@ import java.util.List;
  * Created by Administrator on 2016/12/10.
  */
 
-public class CircleAdapter extends BaseAdapter {
+public class postCommentAdapter extends BaseAdapter {
     private Context context;
     private List<circleInfo> list;
-    class BtnOnClickListener implements android.view.View.OnClickListener{
-        private int position;
-        public BtnOnClickListener(int p){
-            position = p;
-        }
-        @Override
-        public void onClick(View v){
-            Intent intent = new Intent(context, circleDiscussionZone.class);
-            context.startActivity(intent);
-        }
-    }
-    public CircleAdapter(Context context, List<circleInfo> list) {
+    public postCommentAdapter(Context context, List<circleInfo> list) {
         this.context = context;
         this.list = list;
     }
-
     @Override
     public int getCount() {
         if (list == null) {
@@ -80,35 +66,31 @@ public class CircleAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View convertView;
-        ViewHolder viewHolder;
+        postCommentAdapter.ViewHolder viewHolder;
         if (view == null) {   //view为空时才全部加载布局
             //从item这个layout（使用adapter的）来传入需要的context
-            convertView = LayoutInflater.from(context).inflate(R.layout.circlelist_item, null);
-            viewHolder = new ViewHolder();
-            viewHolder.circleUserIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
-            viewHolder.circleName = (TextView) convertView.findViewById(R.id.circle_name);
-            viewHolder.circleBriIntro = (TextView) convertView.findViewById(R.id.circle_briIntro);
-            viewHolder.enterDiscussion = (Button) convertView.findViewById(R.id.enter_discussion);
-            viewHolder.enterDiscussion.setOnClickListener(new BtnOnClickListener(i));
+            convertView = LayoutInflater.from(context).inflate(R.layout.posted_comment_item, null);
+            viewHolder = new postCommentAdapter.ViewHolder();
+            viewHolder.commentIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
+            viewHolder.commentName = (TextView) convertView.findViewById(R.id.circle_name);
+            viewHolder.commentContent = (TextView) convertView.findViewById(R.id.circle_briIntro);
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         } else {
             convertView = view;
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (postCommentAdapter.ViewHolder) convertView.getTag();
         }
-        viewHolder.circleUserIcon.setImageResource(list.get(i).getImgID());
-        viewHolder.circleName.setText(list.get(i).getName());
-        viewHolder.circleBriIntro.setText(list.get(i).getContent());
+        viewHolder.commentIcon.setImageResource(list.get(i).getImgID());
+        viewHolder.commentName.setText(list.get(i).getName());
+        viewHolder.commentContent.setText(list.get(i).getContent());
         return convertView;
     }
 
     private class ViewHolder {
-        public ImageView circleUserIcon;
-        public TextView circleName;
-        public TextView circleBriIntro;
-        public Button enterDiscussion;
+        public ImageView commentIcon;
+        public TextView commentName;
+        public TextView commentContent;
     }
 }

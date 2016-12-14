@@ -6,20 +6,20 @@ package com.example.proj.zhaohuo;
 
 public class circleInfo{
     private int imgID;
-    private String circleName;
-    private String briIntro;
+    private String name;
+    private String content;
     public circleInfo(int imgID, String circleName, String briIntro){
         this.imgID = imgID;
-        this.circleName = circleName;
-        this.briIntro = briIntro;
+        this.name = circleName;
+        this.content = briIntro;
     }
     public int getImgID(){
         return imgID;
     }
-    public String getCircleName(){
-        return circleName;
+    public String getName(){
+        return name;
     }
-    public String getBriIntro(){
-        return briIntro;
+    public String getContent(){
+        return content;
     }
 }
