@@ -3,6 +3,7 @@ package com.example.proj.zhaohuo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -27,7 +28,6 @@ public class circlelistActivity extends AppCompatActivity {
     List<circleInfo> circleInfos = new ArrayList<>();
     ImageView circleUserIcon;
     TextView circleName, circleBriefIntro;
-    Toolbar toolbar;
     int[] imgID = new int[4];
     String[] name = {"职来职往", "英才节", "落叶送祝福", "环保服装设计大赛"};
     String[] briefIntro = {"这是职协的活动", "这是职协的活动", "这是绿叶社的活动", "这是绿叶社的活动"};
@@ -39,7 +39,6 @@ public class circlelistActivity extends AppCompatActivity {
         circleName = (TextView) findViewById(R.id.circle_name);
         circleBriefIntro = (TextView) findViewById(R.id.circle_briIntro);
         circle_listView = (ListView) findViewById(R.id.circle_listView);
-        toolbar = (Toolbar) findViewById(R.id.circlelist_toolbar);
         for(int i=0; i<4; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
@@ -59,18 +58,10 @@ public class circlelistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
         setContentView(R.layout.circlelist);
         initialize();
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回
-        getSupportActionBar().setTitle("圈子列表");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(circlelistActivity.this, Main2Activity.class);
-                startActivity(intent);
-            }
-        });
         instance = this;
         for(int i = 0; i < 4; i++){
             circleInfos.add(new circleInfo(imgID[i], name[i], "简介："+briefIntro[i]));
