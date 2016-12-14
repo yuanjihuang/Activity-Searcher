@@ -38,10 +38,12 @@ public class actDetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
         setContentView(R.layout.activity_act_detail);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         url = bundle.getString("url");
+        Log.d("url: ",url);
         follow = bundle.getInt("follow");
         position = bundle.getInt("position");
         webView = (WebView) findViewById(R.id.webView);

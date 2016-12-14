@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context="com.example.proj.zhaohuo.commentActivity">
 
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/st7"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="第二十届篮协杯"
+            android:textSize="25dp"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_below="@id/header"
+        android:layout_height="1dp"
+        android:background="@color/font_gray"/>
     <ListView
         android:id="@+id/commentList"
         android:layout_width="match_parent"
         android:layout_height="590dp"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_below="@id/line">
     </ListView>
-
 
         <Button
             android:id="@+id/send"
@@ -49,9 +72,5 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:hint="输入评论"/>
-
-
-
-
 
 </RelativeLayout>

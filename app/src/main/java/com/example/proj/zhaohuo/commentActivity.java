@@ -30,7 +30,7 @@ public class commentActivity extends AppCompatActivity {
         "http://c.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=6cf30b4496510fb36c147fc5b85aa3f0/8326cffc1e178a82333f3a5dfe03738da877e8c8.jpg",
         "http://c.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=2bcd93ee47c2d562e605d8bf8678fb8a/ca1349540923dd54c4bb9ae6d909b3de9d824877.jpg",
         "http://b.hiphotos.baidu.com/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=06c1c24aa8ec08fa320d1bf538875608/0d338744ebf81a4ca0cd8a3cdf2a6059242da64c.jpg"};
-        for(int i=0; i<4; i++){
+        for(int i=0; i<username.length; i++){
             String s = "user"+i;
             userImgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
         }
@@ -39,7 +39,7 @@ public class commentActivity extends AppCompatActivity {
         btn = (Button) findViewById(R.id.send);
 
         list = new ArrayList<>();
-        for(int i=0; i<11; i++){
+        for(int i=0; i<username.length; i++){
             CommentInfo temp = new CommentInfo(userImgID[i],userImgUrl[i],username[i],comment[i]);
             list.add(temp);
         }
