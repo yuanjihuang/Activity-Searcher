@@ -1,14 +1,17 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proj.zhaohuo.R;
+import com.example.proj.zhaohuo.circleDiscussionZone;
 import com.example.proj.zhaohuo.circleInfo;
 
 import java.util.List;
@@ -20,7 +23,17 @@ import java.util.List;
 public class CircleAdapter extends BaseAdapter {
     private Context context;
     private List<circleInfo> list;
-
+    class BtnOnClickListener implements android.view.View.OnClickListener{
+        private int position;
+        public BtnOnClickListener(int p){
+            position = p;
+        }
+        @Override
+        public void onClick(View v){
+            Intent intent = new Intent(context, circleDiscussionZone.class);
+            context.startActivity(intent);
+        }
+    }
     public CircleAdapter(Context context, List<circleInfo> list) {
         this.context = context;
         this.list = list;
@@ -79,6 +92,8 @@ public class CircleAdapter extends BaseAdapter {
             viewHolder.circleUserIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
             viewHolder.circleName = (TextView) convertView.findViewById(R.id.circle_name);
             viewHolder.circleBriIntro = (TextView) convertView.findViewById(R.id.circle_briIntro);
+            viewHolder.enterDiscussion = (Button) convertView.findViewById(R.id.enter_discussion);
+            viewHolder.enterDiscussion.setOnClickListener(new BtnOnClickListener(i));
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         } else {
             convertView = view;
@@ -94,5 +109,6 @@ public class CircleAdapter extends BaseAdapter {
         public ImageView circleUserIcon;
         public TextView circleName;
         public TextView circleBriIntro;
+        public Button enterDiscussion;
     }
 }

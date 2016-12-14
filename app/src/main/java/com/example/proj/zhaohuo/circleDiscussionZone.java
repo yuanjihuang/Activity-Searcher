@@ -39,16 +39,17 @@ public class circleDiscussionZone extends AppCompatActivity {
     String[] name = {"zhouHF", "huangYJ", "HeYF", "HongZZ"};
     String[] commentContent = {"那你很棒哦", "那你很棒哦", "那你很棒哦", "那你很棒哦"};
     public void initialize(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.circle_discussion_toolbar);
         circleCommentListView = (ListView) findViewById(R.id.circle_comment_listView);
         commentBtn = (Button) findViewById(R.id.commentCircleBtn);
         editImage = (ImageView) findViewById(R.id.editImageCircleBtn);
+        editImage.setTag(0);
         for(int i=0; i<4; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
         }
     }
-    public void setListViewHeight(ListView listView){
+    /*public void setListViewHeight(ListView listView){
         ListAdapter listAdapter = listView.getAdapter();
         if(listAdapter == null){
             return;
@@ -63,7 +64,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()-1));
         params.height += 5;
         listView.setLayoutParams(params);
-    }
+    }*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,12 +85,20 @@ public class circleDiscussionZone extends AppCompatActivity {
         }
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleCommentatorInfos);
         circleCommentListView.setAdapter(circleDiscussionZoneAdapter);
-        setListViewHeight(circleCommentListView);
+        //setListViewHeight(circleCommentListView);
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                commentBtn.setVisibility(View.VISIBLE);
-                commentBtn.setEnabled(true);
+                if((Integer)editImage.getTag()==0){
+                    commentBtn.setVisibility(View.VISIBLE);
+                    commentBtn.setEnabled(true);
+                    editImage.setTag(1);
+                }
+                else{
+                    commentBtn.setVisibility(View.INVISIBLE);
+                    commentBtn.setEnabled(false);
+                    editImage.setTag(0);
+                }
             }
         });
         commentBtn.setOnClickListener(new View.OnClickListener() {
