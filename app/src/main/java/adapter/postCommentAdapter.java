@@ -74,9 +74,9 @@ public class postCommentAdapter extends BaseAdapter {
             //从item这个layout（使用adapter的）来传入需要的context
             convertView = LayoutInflater.from(context).inflate(R.layout.posted_comment_item, null);
             viewHolder = new postCommentAdapter.ViewHolder();
-            viewHolder.commentIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
-            viewHolder.commentName = (TextView) convertView.findViewById(R.id.circle_name);
-            viewHolder.commentContent = (TextView) convertView.findViewById(R.id.circle_briIntro);
+            viewHolder.commentIcon = (ImageView) convertView.findViewById(R.id.post_detail_ic);
+            viewHolder.commentName = (TextView) convertView.findViewById(R.id.post_detail_name);
+            viewHolder.commentContent = (TextView) convertView.findViewById(R.id.post_detail_content);
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         } else {
             convertView = view;
