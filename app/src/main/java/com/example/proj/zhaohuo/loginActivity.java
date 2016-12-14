@@ -40,9 +40,6 @@ public class loginActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.login_button);   //登录按钮
         connectHelper= new ConnectHelper();
         check_login = connectHelper.url+"Service/check_login.jsp";
-
-
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

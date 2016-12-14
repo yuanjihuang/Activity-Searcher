@@ -1,5 +1,6 @@
 package com.example.proj.zhaohuo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import adapter.ActivityAdapter;
 
 
 public class ActivitySquare extends AppCompatActivity {
+    private ProgressDialog pd1;
     private int[] imgID = new int[11];
     private int[] follow = new int[11];
     private String[] name;
@@ -39,8 +41,6 @@ public class ActivitySquare extends AppCompatActivity {
     private String getDataUrl;
     private ActivityAdapter adapter;
     private List<ActivityInfo> list;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +111,7 @@ public class ActivitySquare extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pd1 = ProgressDialog.show(ActivitySquare.this,null, "加载中……");
         new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -131,6 +132,7 @@ public class ActivitySquare extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(List<String> result) {
+            pd1.dismiss();
             if(result != null){
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
@@ -164,12 +166,10 @@ public class ActivitySquare extends AppCompatActivity {
                         }catch (Exception e){}
                     }
                     adapter.notifyDataSetChanged();
-
                     //JSONArray FavoriteList = JsonUtils.parseAct(result.get(0));
                     /*
                     在这里更新UI
                      */
-
                 }
             }
         }
