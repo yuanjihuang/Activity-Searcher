@@ -142,7 +142,6 @@ public class registerActivity extends AppCompatActivity{
                     /*
                     在这里更新UI
                      */
-                    Toast.makeText(getApplicationContext(), result.get(0), Toast.LENGTH_SHORT).show();
                     char code=result.get(0).charAt(0);
                     if(code == '0'){
                         Toast.makeText(getApplicationContext(),"注册成功！",Toast.LENGTH_SHORT).show();

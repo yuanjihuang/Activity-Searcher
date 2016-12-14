@@ -6,7 +6,7 @@
         android:layout_height="150dp"
         android:textSize="16sp"
         android:id="@+id/circle_comment_content"
-        android:hint="请输入评论内容"/>
+        android:hint="说点什么..."/>
 
     <LinearLayout
         android:layout_width="wrap_content"

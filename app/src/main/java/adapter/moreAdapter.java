@@ -1,10 +1,12 @@
 package adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proj.zhaohuo.R;
@@ -48,9 +50,10 @@ public class MoreAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (view == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.user_info_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.more_item, null);
             viewHolder = new ViewHolder();
-            viewHolder.First = (TextView) convertView.findViewById(R.id.user_info_first);
+            viewHolder.First = (TextView) convertView.findViewById(R.id.more_item);
+            viewHolder.Second = (ImageView) convertView.findViewById(R.id.arrow);
             convertView.setTag(viewHolder);
         } else {
             convertView = view;
@@ -63,5 +66,6 @@ public class MoreAdapter extends BaseAdapter {
 
     private class ViewHolder {
         public TextView First;
+        public ImageView Second;
     }
 }

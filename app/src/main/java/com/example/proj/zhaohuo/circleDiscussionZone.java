@@ -37,18 +37,19 @@ public class circleDiscussionZone extends AppCompatActivity {
     CircleDiscussionZoneAdapter circleDiscussionZoneAdapter;
     int[] imgID = new int[4];
     String[] name = {"zhouHF", "huangYJ", "HeYF", "HongZZ"};
-    String[] commentContent = {"那你很棒哦", "那你很棒哦", "那你很棒哦", "那你很棒哦"};
+    String[] commentContent = {"有谁要一起吗~", "@zhouHF 一起啊", "看起来好像很有趣哦，报名玩玩", "@huangYJ 卧槽你web写完了？"};
     public void initialize(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.circle_discussion_toolbar);
         circleCommentListView = (ListView) findViewById(R.id.circle_comment_listView);
         commentBtn = (Button) findViewById(R.id.commentCircleBtn);
         editImage = (ImageView) findViewById(R.id.editImageCircleBtn);
+        editImage.setTag(0);
         for(int i=0; i<4; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
         }
     }
-    public void setListViewHeight(ListView listView){
+    /*public void setListViewHeight(ListView listView){
         ListAdapter listAdapter = listView.getAdapter();
         if(listAdapter == null){
             return;
@@ -63,7 +64,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()-1));
         params.height += 5;
         listView.setLayoutParams(params);
-    }
+    }*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +72,11 @@ public class circleDiscussionZone extends AppCompatActivity {
         initialize();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回
-        getSupportActionBar().setTitle("讨论区");
+        getSupportActionBar().setTitle("互动区");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(circleDiscussionZone.this, circlelistActivity.class);
+                Intent intent = new Intent(circleDiscussionZone.this, Main2Activity.class);
                 startActivity(intent);
             }
         });
@@ -84,12 +85,20 @@ public class circleDiscussionZone extends AppCompatActivity {
         }
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleCommentatorInfos);
         circleCommentListView.setAdapter(circleDiscussionZoneAdapter);
-        setListViewHeight(circleCommentListView);
+        //setListViewHeight(circleCommentListView);
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                commentBtn.setVisibility(View.VISIBLE);
-                commentBtn.setEnabled(true);
+                if((Integer)editImage.getTag()==0){
+                    commentBtn.setVisibility(View.VISIBLE);
+                    commentBtn.setEnabled(true);
+                    editImage.setTag(1);
+                }
+                else{
+                    commentBtn.setVisibility(View.INVISIBLE);
+                    commentBtn.setEnabled(false);
+                    editImage.setTag(0);
+                }
             }
         });
         commentBtn.setOnClickListener(new View.OnClickListener() {

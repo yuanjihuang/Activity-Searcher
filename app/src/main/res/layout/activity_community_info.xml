@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="381dp"
             android:paddingBottom="17dp" >
 
             <FrameLayout
@@ -56,42 +56,57 @@
                     android:id="@+id/imageView" />
             </RelativeLayout>
 
+
             <TextView
                 android:id="@+id/com_user_detail_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/com_userBackgroundLayout"
-                android:layout_marginTop="30dp"
                 android:ellipsize="end"
-                android:text="xx社团"
+                android:text="约炮社"
                 android:gravity="center"
                 android:singleLine="true"
                 android:textColor="@color/font_black_content"
-                android:textSize="18sp" />
-
+                android:textSize="36sp"
+                android:layout_marginBottom="16dp"
+                android:layout_above="@+id/GroupIntro"
+                android:layout_alignParentStart="true" />
 
             <TextView
-                android:id="@+id/com_school"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/com_userBackgroundLayout"
-                android:layout_marginTop="50dp"
-                android:text="xx大学"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:gravity="center"
-                android:textColor="@color/font_black_content"
-                android:textSize="18sp" />
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:gravity="top"
+                android:text="约炮社是一个给中山大学男女学生晚上学习提供场所的社团。"
+                android:background="@null"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:id="@+id/GroupIntro"
+                android:textColor="@color/black"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="15dp"
             android:background="@drawable/divider"/>
-
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:text="社团信息"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/font_gray"
+            android:textSize="16sp"
+            android:id="@+id/textView" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"/>
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="192dp"
-            android:id="@+id/com_user_info_listview"/>
+            android:layout_height="144dp"
+            android:id="@+id/group_user_info_listview"/>
 
         <ImageView
             android:layout_width="fill_parent"
@@ -100,6 +115,6 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:id="@+id/com_more_listview"/>
+            android:id="@+id/group_more_listview"/>
     </LinearLayout>
 </ScrollView>

@@ -14,39 +14,46 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import adapter.InfoAdapter;
+import adapter.MoreAdapter;
+
 public class communityInfoActivity extends AppCompatActivity {
     private ConnectHelper connectHelper;
+    private InfoAdapter infoAdapter;
+    private MoreAdapter moreAdapter;
+    private List<String> info;
+    private List<String> index;
     private List<String> more;
-    private List<HashMap<String,String>> data;
-    private String commander,level,introduction;
-    private String[] type = {"负责人","社团级别","社团简介"};
-    private ListView lv;
     private String get_user_info;
-    private SimpleAdapter simpleAdapter;
+    private ListView user_info_listview;
+    private ListView more_listview;
     private void initialize(){
         connectHelper = new ConnectHelper();
         get_user_info = connectHelper.url+"/Service/get_user_info.jsp";
-        HashMap<String,String> temp = new HashMap<>();
-        HashMap<String,String> temp1 = new HashMap<>();
-        HashMap<String,String> temp2 = new HashMap<>();
-        commander = "XXX";
-        level = "校级";
-        introduction = "这是一个sb的社团，这是一个sb的社团，这是一个sb的社团，这是一个sb的社团，这是一个sb的社团";
-        data = new ArrayList<>();
-        temp.put("Type",type[0]);temp.put("Info",commander);data.add(temp);
-        temp1.put("Type",type[1]); temp1.put("Info",level);data.add(temp1);
-        temp2.put("Type",type[2]);temp2.put("Info",introduction);data.add(temp2);
+        user_info_listview = (ListView)findViewById(R.id.group_user_info_listview);
+        info = new ArrayList<>();
+        index = new ArrayList<>();
+        index.add("负责人");
+        index.add("所属学校");
+        index.add("社团级别");
+        info.add("何裕丰");
+        info.add("中山大学");
+        info.add("校级");
+        infoAdapter = new InfoAdapter(this,info,index);
+        user_info_listview.setAdapter(infoAdapter);
+        more_listview = (ListView)findViewById(R.id.group_more_listview);
+        more = new ArrayList<>();
+        more.add("社团活动");
+        moreAdapter = new MoreAdapter(this,more);
+        more_listview.setAdapter(moreAdapter);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community_info);
-        lv = (ListView)findViewById(R.id.com_user_info_listview);
         initialize();
-        simpleAdapter = new SimpleAdapter(this,data,R.layout.user_info_item_show,new String[]{"Type","Info"},new int[]{R.id.show_user_type,R.id.show_user_info});
-        lv.setAdapter(simpleAdapter);
     }
-    private class DownloadWebpageText extends AsyncTask<String,Integer,List<String>> {
+   /* private class DownloadWebpageText extends AsyncTask<String,Integer,List<String>> {
         @Override
         protected List<String> doInBackground(String... urls) {
             try {
@@ -65,10 +72,10 @@ public class communityInfoActivity extends AppCompatActivity {
                 }else{
                     /*
                     在这里更新UI
-                     */
+
 
                 }
             }
         }
-    }
+    }*/
 }

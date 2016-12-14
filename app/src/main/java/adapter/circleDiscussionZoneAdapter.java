@@ -1,15 +1,19 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proj.zhaohuo.R;
 import com.example.proj.zhaohuo.circleCommentatorInfo;
+import com.example.proj.zhaohuo.circleDiscussionZone;
+import com.example.proj.zhaohuo.circlelistActivity;
 
 import java.util.List;
 
@@ -79,6 +83,7 @@ public class CircleDiscussionZoneAdapter extends BaseAdapter {
             viewHolder.commentatorIcon = (ImageView) convertView.findViewById(R.id.circle_commentator_ic);
             viewHolder.commentatorName = (TextView) convertView.findViewById(R.id.circle_commentator_name);
             viewHolder.commentContent = (TextView) convertView.findViewById(R.id.circle_comment_content);
+
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         } else {
             convertView = view;
@@ -94,5 +99,6 @@ public class CircleDiscussionZoneAdapter extends BaseAdapter {
         public ImageView commentatorIcon;
         public TextView commentatorName;
         public TextView commentContent;
+        public Button enterDiscussion;
     }
 }
