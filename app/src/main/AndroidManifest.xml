@@ -21,12 +21,11 @@
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
-        <activity android:name=".userInfoActivity">
-        </activity>
-        <activity android:name=".circlelistActivity">
-
-        </activity>
-        <activity android:name=".circleDiscussionZone"/>
+        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".userInfoActivity"></activity>
+        <activity android:name=".communityInfoActivity"></activity>
+        <activity android:name=".circlelistActivity"></activity>
+        <activity android:name=".circleDiscussionZone"></activity>
         <activity android:name=".ActivitySquare"></activity>
         <activity android:name=".Main2Activity">
         </activity>
@@ -37,6 +36,11 @@
             <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
         </activity>
+        <activity android:name=".actDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="活动详情">
+        </activity>
+        <activity android:name=".commentActivity"></activity>
     </application>
 
 </manifest>
