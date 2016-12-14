@@ -27,7 +27,7 @@
         android:layout_marginBottom="10dp"
         android:textSize="18sp"
         android:id="@+id/circle_briIntro"/>
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="进入讨论区"
@@ -35,6 +35,6 @@
         android:textColor="@color/colorPrimary"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/circle_briIntro"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/enter_discussion"/>
+        android:id="@+id/enter_discussion"
+        android:background="#00000000"/>
 </RelativeLayout>

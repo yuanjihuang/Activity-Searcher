@@ -27,6 +27,7 @@ public class circlelistActivity extends AppCompatActivity {
     List<circleInfo> circleInfos = new ArrayList<>();
     ImageView circleUserIcon;
     TextView circleName, circleBriefIntro;
+    Toolbar toolbar;
     int[] imgID = new int[4];
     String[] name = {"职来职往", "英才节", "落叶送祝福", "环保服装设计大赛"};
     String[] briefIntro = {"这是职协的活动", "这是职协的活动", "这是绿叶社的活动", "这是绿叶社的活动"};
@@ -38,9 +39,21 @@ public class circlelistActivity extends AppCompatActivity {
         circleName = (TextView) findViewById(R.id.circle_name);
         circleBriefIntro = (TextView) findViewById(R.id.circle_briIntro);
         circle_listView = (ListView) findViewById(R.id.circle_listView);
+        toolbar = (Toolbar) findViewById(R.id.circlelist_toolbar);
         for(int i=0; i<4; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
+        }
+    }
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
         }
     }
     @Override
@@ -48,18 +61,39 @@ public class circlelistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.circlelist);
         initialize();
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回
+        getSupportActionBar().setTitle("圈子列表");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(circlelistActivity.this, Main2Activity.class);
+                startActivity(intent);
+            }
+        });
         instance = this;
         for(int i = 0; i < 4; i++){
             circleInfos.add(new circleInfo(imgID[i], name[i], "简介："+briefIntro[i]));
         }
         circleAdapter = new CircleAdapter(this, circleInfos);
         circle_listView.setAdapter(circleAdapter);
-        circle_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*for(int i = 0; i < circle_listView.getAdapter().getCount(); i++){
+            getViewByPosition(i, circle_listView).findViewById(R.id.enter_discussion).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(circlelistActivity.this, circleDiscussionZone.class);
+                            startActivity(intent);
+                        }
+                    }
+            );
+        }*/
+        /*circle_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(circlelistActivity.this, circleDiscussionZone.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }

@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:fadingEdge="vertical">
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/circle_discussion_toolbar"
         android:layout_width="match_parent"
         android:background="?attr/colorPrimary"
         android:layout_height="?attr/actionBarSize" />
@@ -36,43 +31,51 @@
             android:textSize="30sp"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
-     <TextView
-         android:layout_width="250dp"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/activity_poster"
-         android:text="活动简介：这是个很吊的活动,真的很吊的活动"
-         android:layout_gravity="center"
-         android:layout_marginTop="10dp"/>
-    <LinearLayout
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_poster"
+        android:text="活动简介：这是个很有趣的活动"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView"
+        android:maxWidth="250dp"/>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_marginLeft="250dp">
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:background="@color/white"
-            android:text="评论"
-            android:textSize="15sp"
-            android:visibility="invisible"
-            android:enabled="false"
-            android:id="@+id/commentCircleBtn"/>
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/edit_ic"
-            android:id="@+id/editImageCircleBtn" />
 
-    </LinearLayout>
-        <ListView
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="评论"
+                android:enabled="false"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:id="@+id/commentCircleBtn"
+                android:visibility="invisible"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/edit_ic"
+            android:id="@+id/editImageCircleBtn"
+            android:layout_toRightOf="@+id/commentCircleBtn"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"/>
+
+    </RelativeLayout>
+
+    <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_marginLeft="10dp"
             android:id="@+id/circle_comment_listView"
             android:divider="@color/white"
-            android:listSelector="@color/white"
             android:layout_marginTop="10dp" />
+
 </LinearLayout>
-</ScrollView>
