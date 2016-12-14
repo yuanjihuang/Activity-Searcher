@@ -39,7 +39,7 @@
             </RelativeLayout>
 
         <TextView
-            android:text="何裕丰"
+            android:text="Sun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
@@ -50,7 +50,7 @@
             android:layout_marginStart="18dp" />
 
         <TextView
-            android:text="大家好，我是炮王裕丰。"
+            android:text="大家好，我是SunBB。"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

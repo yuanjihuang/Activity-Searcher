@@ -41,7 +41,7 @@ public class userInfoActivity extends AppCompatActivity {
         info.add("炮王");
         info.add("12345677");
         info.add("1");
-        info.add("大家好，我是来自移动信息工程的孙笔笔同学,我最喜欢的事就是和女同学交流感情。");
+        info.add("大家好，我是来自移动信息工程的孙笔笔同学,我最喜欢凌晨四点的逸仙大道。");
         userIntro.setText(info.get(4));
         infoAdapter = new InfoAdapter(this,info,index);
         user_info_listview.setAdapter(infoAdapter);

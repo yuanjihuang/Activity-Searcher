@@ -49,7 +49,7 @@
                 android:layout_height="70dp"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="5dp"
-                tools:text="大家好，我是来自移动信息工程的孙笔笔同学,我最喜欢的事就是和女同学交流感情。"
+                tools:text="大家好，我是来自移动信息工程的孙笔笔同学,我最喜欢凌晨四点的逸仙大道。"
                 android:background="@null"
                 android:layout_marginLeft="40dp"
                 android:paddingTop="10dp"

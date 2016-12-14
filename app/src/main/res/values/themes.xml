@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="My_ActionBar_Style" parent="Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@color/tab_color2</item>
+        <item name="actionMenuTextAppearance">@style/CustomTextStyle</item>
+        <item name="android:actionMenuTextAppearance">@style/CustomTextStyle</item>
+    </style>
+    <style name="CustomTextStyle" parent="@android:style/TextAppearance.Holo">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+</resources>

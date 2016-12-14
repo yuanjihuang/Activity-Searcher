@@ -24,4 +24,7 @@
     <color name="reply_theme_content_text">#666465</color>
     <color name="goods_detail_username">#9e6142</color>
     <color name="goods_detail_price">#fe785f</color>
+    <color name="tab_color1">#0f8c8e</color>
+    <color name="tab_color2">#9b0404</color>
+    <color name="tab_color3">#d539374b</color>
 </resources>

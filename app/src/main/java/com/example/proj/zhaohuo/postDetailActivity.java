@@ -25,7 +25,7 @@ public class postDetailActivity extends AppCompatActivity {
     int imgID = R.drawable.ic_avatar;
     postCommentAdapter adapter;
     String[] name = {"文艺", "晴天", "炮王", "鸡总"};
-    String[] content = {"吃屎啦你", "同意楼上", "+1", "+1"};
+    String[] content = {"说的好像真的一样", "同意楼上", "+1", "+1"};
     private void initialize(){
         listView = (ListView) findViewById(R.id.post_comment_listView);
     }

@@ -41,7 +41,6 @@ public class circlelistActivity extends AppCompatActivity {
         circleName = (TextView) findViewById(R.id.circle_name);
         circleBriefIntro = (TextView) findViewById(R.id.circle_briIntro);
         circle_listView = (ListView) findViewById(R.id.circle_listView);
-        toolbar = (Toolbar) findViewById(R.id.circlelist_toolbar);
         for(int i=0; i<5; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());

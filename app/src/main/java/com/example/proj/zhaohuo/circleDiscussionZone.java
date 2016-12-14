@@ -41,12 +41,11 @@ public class circleDiscussionZone extends AppCompatActivity {
     int imgID = R.drawable.ic_avatar;
     List<Map<String, Object>> data = new ArrayList<>();
     String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ"};
-    String[] postedName = {"孙哔哔", "陈晴天", "文艺", "赔命"};
-    String[] postedTitle = {"1405孙哔哔求组队", "组内有N个美女，来个男丁(不搞基", "来我这，我带你毁人篮球梦",
-            "帅哥求组"};
+    String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥"};
+    String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "来我这，我带你毁人篮球梦",
+            "看我ID"};
     public void initialize(){
         posted_listView = (ListView) findViewById(R.id.posted_listView);
-        toolbar = (Toolbar) findViewById(R.id.circle_discussion_toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
     }
     public void setListViewHeight(ListView listView){
