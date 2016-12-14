@@ -48,13 +48,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:gravity="center_horizontal"
-                android:text="大家好，我是炮王裕丰,我最喜欢的是就是和女同学交流感情。"
+                android:lineSpacingExtra="5dp"
+                tools:text="大家好，我是来自移动信息工程的孙笔笔同学,我最喜欢的事就是和女同学交流感情。"
                 android:background="@null"
                 android:layout_marginLeft="40dp"
                 android:paddingTop="10dp"
                 android:layout_marginRight="40dp"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textColor="@color/font_gray"
                 android:ems="10"
                 android:id="@+id/UserIntro"
                 android:layout_alignParentEnd="true"
@@ -64,8 +65,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account"
-                android:textColor="@color/font_black_content"
+                android:text="sunbb@163.com"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:id="@+id/AcctName"
                 android:gravity="center_horizontal"
@@ -78,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_sex_boy"
-
+                android:layout_marginTop="2dp"
                 android:layout_below="@+id/AcctKind"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/UserIntro" />
@@ -86,7 +87,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="kind"
+                android:layout_marginTop="2dp"
+                android:text="学生"
                 android:textColor="@color/gray"
                 android:id="@+id/AcctKind"
                 android:layout_below="@+id/AcctName"
@@ -127,7 +129,8 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/setUserInfo">
+            android:id="@+id/setUserInfo"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="16dp"

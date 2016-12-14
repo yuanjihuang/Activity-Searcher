@@ -12,16 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".startActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
         <activity android:name=".UserActivity"></activity>
-        <activity android:name=".userInfoActivity"></activity>
+        <activity android:name=".userInfoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".communityInfoActivity"></activity>
         <activity android:name=".circlelistActivity"></activity>
         <activity android:name=".circleDiscussionZone"></activity>

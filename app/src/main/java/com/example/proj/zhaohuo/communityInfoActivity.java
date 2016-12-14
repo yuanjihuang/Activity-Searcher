@@ -36,7 +36,7 @@ public class communityInfoActivity extends AppCompatActivity {
         index.add("负责人");
         index.add("所属学校");
         index.add("社团级别");
-        info.add("何裕丰");
+        info.add("孙笔笔");
         info.add("中山大学");
         info.add("校级");
         infoAdapter = new InfoAdapter(this,info,index);
