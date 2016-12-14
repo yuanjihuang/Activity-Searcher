@@ -5,5 +5,5 @@ package com.example.proj.zhaohuo;
  */
 
 public class CurrentAcct {
-    public static String AcctName;
+    public static String AcctName="zhangsan";
 }

@@ -21,7 +21,9 @@
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
-        <activity android:name=".userInfoActivity"></activity>
+        <activity android:name=".userInfoActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="个人信息"></activity>
         <activity android:name=".communityInfoActivity">
         </activity>
         <activity android:name=".circlelistActivity"></activity>
@@ -29,7 +31,8 @@
         <activity android:name=".circleDiscussionZone" />
         <activity android:name=".ActivitySquare" />
         <activity android:name=".actDetailActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="活动详情">
         </activity>
         <activity android:name=".Main2Activity">
 
