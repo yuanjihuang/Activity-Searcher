@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -46,13 +47,12 @@ public class ActivitySquare extends AppCompatActivity {
         setContentView(R.layout.activitylist);
         connectHelper = new ConnectHelper();
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
-        new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
 
-        for(int i=0; i<11; i++){
+        /*for(int i=0; i<11; i++){
             String s = "st"+i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
             follow[i] = i%2;
-        }
+        }*/
 
         name = new String[11];
         info = new String[11];
@@ -60,6 +60,7 @@ public class ActivitySquare extends AppCompatActivity {
         actUrl = new String[11];
         imgUrl = new String[11];
         list = new ArrayList<>();
+        new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
         adapter = new ActivityAdapter(this,list);
         listView = (ListView) findViewById(R.id.activityList);
 
@@ -70,6 +71,7 @@ public class ActivitySquare extends AppCompatActivity {
                 //跳转到详情页面
                 final ActivityAdapter.ViewHolder viewHolder =(ActivityAdapter.ViewHolder) adapter.getView(position,view,parent).getTag();
                 follow[position] = adapter.getCurrentFollow();
+                Log.d("URL: ",name[position]);
                 Bundle bundle = new Bundle();
                 bundle.putString("url",actUrl[position]);
                 bundle.putInt("follow",follow[position]);
@@ -152,6 +154,7 @@ public class ActivitySquare extends AppCompatActivity {
                             String tem = "st" + oj.getInt("ActID");
                             imgID[i] = getResources().getIdentifier(tem,"drawable",getPackageName());
                             imgUrl[i] = oj.getString("ActUrl");
+                            actUrl[i] = oj.getString("ActUrl");
                             name[i] = oj.getString("ActName");
                             info[i] = oj.getString("ActInfo");
                             remark[i] = oj.getString("ActRemark");
