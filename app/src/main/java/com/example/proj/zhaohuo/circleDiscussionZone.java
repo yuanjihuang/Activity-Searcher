@@ -3,12 +3,16 @@ package com.example.proj.zhaohuo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -37,6 +41,8 @@ public class circleDiscussionZone extends AppCompatActivity {
     ListView posted_listView;
     ArrayList<circleFollowerInfo> circleFollowerList  = new ArrayList<>();
     CircleDiscussionZoneAdapter circleDiscussionZoneAdapter;
+    CurrentAcct currentAcct = new CurrentAcct();
+    SimpleAdapter simpleAdapter;
     private RecyclerView recyclerView;
     int imgID = R.drawable.ic_avatar;
     List<Map<String, Object>> data = new ArrayList<>();
@@ -68,6 +74,9 @@ public class circleDiscussionZone extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.circle_discussion_zone);
         initialize();
 //        setSupportActionBar(toolbar);
@@ -94,7 +103,7 @@ public class circleDiscussionZone extends AppCompatActivity {
             temp.put("postedTitle", postedTitle[i]);
             data.add(temp);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(circleDiscussionZone.this, data, R.layout.posted_item,
+        simpleAdapter = new SimpleAdapter(circleDiscussionZone.this, data, R.layout.posted_item,
                 new String[] {"posterName", "postedTitle"}, new int[] {R.id.poster_name, R.id.posted_title});
         posted_listView.setAdapter(simpleAdapter);//更新listView
         //setListViewHeight(posted_listView);
@@ -102,8 +111,48 @@ public class circleDiscussionZone extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(circleDiscussionZone.this, postDetailActivity.class);
-                startActivity(intent);
+                intent.putExtra("name", data.get(position).get("posterName").toString());
+                startActivityForResult(intent, 0);
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.postmsg_item,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int flag=0;
+        switch (item.getItemId()){
+            case R.id.menu_next:
+                flag=2; break;
+            case android.R.id.home:
+                flag = 1;
+                break;
+            default:
+                break;
+        }
+        if(flag==1) finish();
+        else if(flag==2){
+            Intent intent = new Intent(circleDiscussionZone.this, PostMsgActivity.class);
+            startActivityForResult(intent, 0);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(requestCode == 0 && requestCode == 0){
+            Bundle bundle = intent.getExtras();
+            String title = bundle.getString("title");
+            //String conteent = bundle.getString("content");
+            Map<String, Object> temp = new LinkedHashMap<>();
+            //temp.put("posterName", currentAcct.AcctName);
+            temp.put("posterName", "Me");
+            temp.put("postedTitle", title);
+            data.add(temp);
+            simpleAdapter.notifyDataSetChanged();
+        }
     }
 }
