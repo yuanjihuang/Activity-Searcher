@@ -30,6 +30,7 @@ public class postDetailActivity extends AppCompatActivity {
     //int imgID = R.drawable.ic_avatar;
     int[] imgID = new int[11];;
     postCommentAdapter adapter;
+    String circleName = "";
     TextView owner;
     String[] name = {"Sun", "田鸡", "山大王", "我是帅哥", "paul", "nike", "addi", "antony", "james", "jay", "kyrie"};
     String[] content = {"说的好像真的一样", "同意楼上","+1", "+1","sounds great","are u sure?","oh come on","u just lie","我就笑笑", "不说话","bird"};
@@ -68,6 +69,9 @@ public class postDetailActivity extends AppCompatActivity {
         initialize();
         final Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
+        circleName = bundle.get("circleName").toString();
+
         String ownerName = bundle.get("name").toString();
         owner.setText(ownerName);
 
@@ -83,7 +87,8 @@ public class postDetailActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 Intent intent = new Intent(postDetailActivity.this, circleDiscussionZone.class);
-                startActivityForResult(intent, 1);
+                intent.putExtra("circleName", circleName);
+                postDetailActivity.this.setResult(1, intent);
                 this.finish();
                 break;
             default:

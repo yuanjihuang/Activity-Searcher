@@ -93,19 +93,13 @@ public class circleDiscussionZone extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.circle_discussion_zone);
         initialize();
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回
-//        getSupportActionBar().setTitle("畅谈区");
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(circleDiscussionZone.this, circlelistActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        //设置传过来的圈子名称
+        Intent intent = getIntent();
+        circleName.setText(intent.getStringExtra("circleName"));
+
+        //recyclelist
         LinearLayoutManager layoutManager = new LinearLayoutManager(circleDiscussionZone.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//横向摆放
-        //recyclelist
         recyclerView.setLayoutManager(layoutManager);
 
         for(int i = 0; i < followerName.length; i++){
@@ -129,6 +123,7 @@ public class circleDiscussionZone extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(circleDiscussionZone.this, postDetailActivity.class);
                 intent.putExtra("name", data.get(position).get("posterName").toString());
+                intent.putExtra("circleName", circleName.getText().toString());
                 startActivityForResult(intent, 0);
             }
         });
@@ -172,13 +167,17 @@ public class circleDiscussionZone extends AppCompatActivity {
         if(flag==1) finish();
         else if(flag==2){
             Intent intent = new Intent(circleDiscussionZone.this, PostMsgActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("circleName", circleName.getText().toString());
+            intent.putExtras(bundle);
+            //intent.putExtra("circleName", circleName.getText().toString());
             startActivityForResult(intent, 0);
         }
         return super.onOptionsItemSelected(item);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-        /*if(requestCode == 0 && resultCode == 0){
+        if(requestCode == 0 && resultCode == 0){
             Bundle bundle = intent.getExtras();
             String title = bundle.getString("title");
             //String conteent = bundle.getString("content");
@@ -188,19 +187,7 @@ public class circleDiscussionZone extends AppCompatActivity {
             temp.put("postedTitle", title);
             data.add(temp);
             simpleAdapter.notifyDataSetChanged();
-        }else{
-            Bundle bundle = intent.getExtras();
             circleName.setText(bundle.getString("circleName"));
-        }*/
-        Bundle bundle = intent.getExtras();
-        String title = bundle.getString("title");
-        //String conteent = bundle.getString("content");
-        Map<String, Object> temp = new LinkedHashMap<>();
-        //temp.put("posterName", currentAcct.AcctName);
-        temp.put("posterName", "Me");//该帐号名字
-        temp.put("postedTitle", title);
-        data.add(temp);
-        simpleAdapter.notifyDataSetChanged();
-        circleName.setText(bundle.getString("circleName"));
+        }
     }
 }

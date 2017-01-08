@@ -10,8 +10,12 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class PostMsgActivity extends AppCompatActivity {
     EditText postTitle, postContent;
+    String circleName="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,8 @@ public class PostMsgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_msg);
         postTitle = (EditText) findViewById(R.id.title);
         postContent = (EditText) findViewById(R.id.content);
+        Intent intent = getIntent();
+        circleName = intent.getStringExtra("circleName");
     }
 
     @Override
@@ -56,6 +62,7 @@ public class PostMsgActivity extends AppCompatActivity {
                 Intent intent = new Intent(PostMsgActivity.this, circleDiscussionZone.class);
                 intent.putExtra("title", title);
                 intent.putExtra("content", content);
+                intent.putExtra("circleName", circleName);
                 PostMsgActivity.this.setResult(0, intent);
                 PostMsgActivity.this.finish();
             }
