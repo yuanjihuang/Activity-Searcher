@@ -30,7 +30,7 @@ public class startActivity extends AppCompatActivity{
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(startActivity.this, Main2Activity.class);
+                Intent intent = new Intent(startActivity.this, circlelistActivity.class);
                 startActivity(intent);
                 startActivity.this.finish();
             }

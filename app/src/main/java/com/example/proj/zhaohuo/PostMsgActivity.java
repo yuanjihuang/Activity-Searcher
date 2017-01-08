@@ -41,7 +41,11 @@ public class PostMsgActivity extends AppCompatActivity {
             default:
                 break;
         }
-        if(flag==1) finish();
+        if(flag==1){
+            Intent intent = new Intent(PostMsgActivity.this, circleDiscussionZone.class);
+            startActivityForResult(intent, 1);
+            this.finish();
+        }
         else if(flag==2){
             String title = postTitle.getText().toString();
             String content = postContent.getText().toString();

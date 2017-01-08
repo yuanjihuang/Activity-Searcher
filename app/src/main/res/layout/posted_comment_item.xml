@@ -10,12 +10,13 @@
         android:orientation="horizontal"
         android:weightSum="1">
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
+            android:padding="5dp"
+            android:background="#22dbd8d8">
             <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_avatar"
                 android:layout_marginTop="10dp"
                 android:id="@+id/post_detail_ic"
@@ -26,13 +27,11 @@
                 android:text="孙哔哔"
                 android:id="@+id/post_detail_name"
                 android:textSize="15sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_below="@+id/post_detail_ic"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
-
-
         <TextView
             android:layout_width="280dp"
             android:layout_height="wrap_content"
@@ -41,9 +40,14 @@
             android:textSize="18sp"
             android:layout_alignTop="@+id/post_detail_ic"
             android:layout_toEndOf="@+id/post_detail_ic"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="1.02" />
+            android:layout_weight="1.02"
+            android:textColor="@color/text_black"
+            android:layout_marginRight="10dp"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/font_gray"/>
 </LinearLayout>

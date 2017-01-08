@@ -27,14 +27,20 @@ import adapter.postCommentAdapter;
 public class postDetailActivity extends AppCompatActivity {
     List<circleInfo> list = new ArrayList<>();
     ListView listView;
-    int imgID = R.drawable.ic_avatar;
+    //int imgID = R.drawable.ic_avatar;
+    int[] imgID = new int[11];;
     postCommentAdapter adapter;
     TextView owner;
-    String[] name = {"Sun", "田鸡", "山大王", "我是帅哥"};
-    String[] content = {"说的好像真的一样", "同意楼上", "+1", "+1"};
+    String[] name = {"Sun", "田鸡", "山大王", "我是帅哥", "paul", "nike", "addi", "antony", "james", "jay", "kyrie"};
+    String[] content = {"说的好像真的一样", "同意楼上","+1", "+1","sounds great","are u sure?","oh come on","u just lie","我就笑笑", "不说话","bird"};
     private void initialize(){
         listView = (ListView) findViewById(R.id.post_comment_listView);
         owner = (TextView) findViewById(R.id.post_detail_name_owner);
+        for(int i=0; i < 10; i++){
+            String s = "st" + i;
+            imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
+        }
+        imgID[10] = getResources().getIdentifier("st1","drawable",getPackageName());
     }
     public void setListViewHeight(ListView listView){
         ListAdapter listAdapter = listView.getAdapter();
@@ -64,8 +70,9 @@ public class postDetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         String ownerName = bundle.get("name").toString();
         owner.setText(ownerName);
-        for(int i = 0; i < 4; i++){
-            list.add(new circleInfo(imgID, name[i], content[i]));
+
+        for(int i = 0; i < name.length; i++){
+            list.add(new circleInfo(imgID[i], name[i], content[i]));
         }
         adapter = new postCommentAdapter(this, list);
         listView.setAdapter(adapter);

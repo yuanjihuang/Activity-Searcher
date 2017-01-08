@@ -31,6 +31,7 @@ public class CircleAdapter extends BaseAdapter {
         @Override
         public void onClick(View v){
             Intent intent = new Intent(context, circleDiscussionZone.class);
+            intent.putExtra("circleName", list.get(position).getName());
             context.startActivity(intent);
         }
     }
@@ -92,8 +93,8 @@ public class CircleAdapter extends BaseAdapter {
             viewHolder.circleUserIcon = (ImageView) convertView.findViewById(R.id.circle_user_ic);
             viewHolder.circleName = (TextView) convertView.findViewById(R.id.circle_name);
             viewHolder.circleBriIntro = (TextView) convertView.findViewById(R.id.circle_briIntro);
-            viewHolder.enterDiscussion = (Button) convertView.findViewById(R.id.enter_discussion);
-            viewHolder.enterDiscussion.setOnClickListener(new BtnOnClickListener(i));
+            //viewHolder.enterDiscussion = (Button) convertView.findViewById(R.id.enter_discussion);
+            //viewHolder.enterDiscussion.setOnClickListener(new BtnOnClickListener(i));
             convertView.setTag(viewHolder); //存好firstLetter和name两个控件，不需要每次都找一遍
         } else {
             convertView = view;
@@ -109,6 +110,6 @@ public class CircleAdapter extends BaseAdapter {
         public ImageView circleUserIcon;
         public TextView circleName;
         public TextView circleBriIntro;
-        public Button enterDiscussion;
+        //public Button enterDiscussion;
     }
 }

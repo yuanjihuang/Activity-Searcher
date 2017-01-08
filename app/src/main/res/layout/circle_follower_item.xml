@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:text="孙哔哔"
         android:id="@+id/circle_follower_name"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@+id/circle_follower_ic"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/black"/>
 
 </RelativeLayout>

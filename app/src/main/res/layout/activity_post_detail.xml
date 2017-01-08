@@ -12,9 +12,10 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:padding="5dp"
+                android:background="#22dbd8d8">
                 <ImageView
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -28,7 +29,7 @@
                     android:text="孙哔哔"
                     android:id="@+id/post_detail_name_owner"
                     android:textSize="15sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/goods_detail_price"
                     android:layout_below="@+id/post_detail_ic_owner"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"/>
@@ -38,7 +39,7 @@
                     android:text="(楼主)"
                     android:layout_below="@id/post_detail_name_owner"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/goods_detail_price"/>
             </RelativeLayout>
 
 
@@ -50,20 +51,20 @@
                 android:textSize="18sp"
                 android:layout_alignTop="@+id/post_detail_ic_owner"
                 android:layout_toEndOf="@+id/post_detail_ic_owner"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1.02" />
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1.02"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"
+            android:layout_height="5dp"
+            android:background="@color/font_gray"
             android:layout_marginTop="5dp"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/post_comment_listView"
-            android:layout_marginTop="10dp">
+            android:id="@+id/post_comment_listView">
 
         </ListView>
     </LinearLayout>

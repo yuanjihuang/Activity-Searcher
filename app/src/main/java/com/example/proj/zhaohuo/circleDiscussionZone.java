@@ -1,5 +1,6 @@
 package com.example.proj.zhaohuo;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -44,15 +48,25 @@ public class circleDiscussionZone extends AppCompatActivity {
     CurrentAcct currentAcct = new CurrentAcct();
     SimpleAdapter simpleAdapter;
     private RecyclerView recyclerView;
-    int imgID = R.drawable.ic_avatar;
+    //int imgID = R.drawable.ic_avatar;
+    int[] imgID = new int[10];
     List<Map<String, Object>> data = new ArrayList<>();
-    String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ"};
-    String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥"};
-    String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "来我这，我带你毁人篮球梦",
-            "看我ID"};
+    String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ", "paul", "nike", "addi", "antony", "james", "jay"};
+    String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥", "高佬", "肥牛","paul", "nike", "addi", "antony", "james", "jay"};
+    String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "这个可以",
+            "看我ID", "一起搞事", "好像很棒","will u join us?","我来卖鞋","楼上不行","come on,find someone reliable like me",
+            "I have championship","I can sing"};
+    ObjectAnimator animator;
+    TextView tip, circleName;
     public void initialize(){
         posted_listView = (ListView) findViewById(R.id.posted_listView);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        tip = (TextView) findViewById(R.id.tip);
+        circleName = (TextView) findViewById(R.id.circleName1);
+        for(int i = 0; i < 10; i++){
+            String s = "st" + i;
+            imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
+        }
     }
     public void setListViewHeight(ListView listView){
         ListAdapter listAdapter = listView.getAdapter();
@@ -91,13 +105,16 @@ public class circleDiscussionZone extends AppCompatActivity {
 //        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(circleDiscussionZone.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//横向摆放
+        //recyclelist
         recyclerView.setLayoutManager(layoutManager);
-        for(int i = 0; i < 4; i++){
-            circleFollowerList.add(new circleFollowerInfo(imgID, followerName[i]));
+
+        for(int i = 0; i < followerName.length; i++){
+            circleFollowerList.add(new circleFollowerInfo(imgID[i], followerName[i]));
         }
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleFollowerList);
         recyclerView.setAdapter(circleDiscussionZoneAdapter);
-        for(int i = 0; i < 4; i++){
+        //跟帖
+        for(int i = 0; i < postedName.length; i++){
             Map<String, Object> temp = new LinkedHashMap<>();
             temp.put("posterName", postedName[i]);
             temp.put("postedTitle", postedTitle[i]);
@@ -113,6 +130,24 @@ public class circleDiscussionZone extends AppCompatActivity {
                 Intent intent = new Intent(circleDiscussionZone.this, postDetailActivity.class);
                 intent.putExtra("name", data.get(position).get("posterName").toString());
                 startActivityForResult(intent, 0);
+            }
+        });
+        posted_listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if(scrollState == SCROLL_STATE_TOUCH_SCROLL || scrollState == SCROLL_STATE_FLING){
+                    tip.setVisibility(View.VISIBLE);
+                    animator = ObjectAnimator.ofFloat(tip, "translationY", 0, -80, 0, -80, 0);
+                    animator.setDuration(800);
+                    animator.setRepeatCount(-1);
+                    animator.start();
+                }else if(scrollState == SCROLL_STATE_IDLE){
+                    animator.cancel();
+                    tip.setVisibility(View.INVISIBLE);
+                }
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
             }
         });
     }
@@ -143,16 +178,29 @@ public class circleDiscussionZone extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-        if(requestCode == 0 && requestCode == 0){
+        /*if(requestCode == 0 && resultCode == 0){
             Bundle bundle = intent.getExtras();
             String title = bundle.getString("title");
             //String conteent = bundle.getString("content");
             Map<String, Object> temp = new LinkedHashMap<>();
             //temp.put("posterName", currentAcct.AcctName);
-            temp.put("posterName", "Me");
+            temp.put("posterName", "Me");//该帐号名字
             temp.put("postedTitle", title);
             data.add(temp);
             simpleAdapter.notifyDataSetChanged();
-        }
+        }else{
+            Bundle bundle = intent.getExtras();
+            circleName.setText(bundle.getString("circleName"));
+        }*/
+        Bundle bundle = intent.getExtras();
+        String title = bundle.getString("title");
+        //String conteent = bundle.getString("content");
+        Map<String, Object> temp = new LinkedHashMap<>();
+        //temp.put("posterName", currentAcct.AcctName);
+        temp.put("posterName", "Me");//该帐号名字
+        temp.put("postedTitle", title);
+        data.add(temp);
+        simpleAdapter.notifyDataSetChanged();
+        circleName.setText(bundle.getString("circleName"));
     }
 }

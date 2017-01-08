@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_avatar"
         android:id="@+id/circle_user_ic"
         android:layout_marginTop="10dp"/>
@@ -14,9 +14,11 @@
         android:text="职来职往"
         android:layout_toRightOf="@+id/circle_user_ic"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/circle_name"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,17 +26,14 @@
         android:layout_below="@+id/circle_name"
         android:layout_alignStart="@+id/circle_name"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="2dp"
         android:textSize="18sp"
         android:id="@+id/circle_briIntro"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="进入畅谈区"
-        android:textSize="15sp"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentRight="true"
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/font_gray"
         android:layout_below="@+id/circle_briIntro"
-        android:id="@+id/enter_discussion"
-        android:background="#00000000"/>
+        android:layout_marginTop="5dp"/>
 </RelativeLayout>
