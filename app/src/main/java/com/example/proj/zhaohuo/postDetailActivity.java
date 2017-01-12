@@ -10,10 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +35,16 @@ public class postDetailActivity extends AppCompatActivity {
     postCommentAdapter adapter;
     String circleName = "";
     TextView owner;
+    Button ok_comment;
+    EditText editText;
+    CurrentAcct currentAcct = new CurrentAcct();
     String[] name = {"Sun", "田鸡", "山大王", "我是帅哥", "paul", "nike", "addi", "antony", "james", "jay", "kyrie"};
     String[] content = {"说的好像真的一样", "同意楼上","+1", "+1","sounds great","are u sure?","oh come on","u just lie","我就笑笑", "不说话","bird"};
     private void initialize(){
         listView = (ListView) findViewById(R.id.post_comment_listView);
         owner = (TextView) findViewById(R.id.post_detail_name_owner);
+        ok_comment = (Button) findViewById(R.id.send1);
+        editText = (EditText) findViewById(R.id.input1);
         for(int i=0; i < 10; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
@@ -80,7 +88,15 @@ public class postDetailActivity extends AppCompatActivity {
         }
         adapter = new postCommentAdapter(this, list);
         listView.setAdapter(adapter);
-        setListViewHeight(listView);
+
+        ok_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add(new circleInfo(imgID[1], currentAcct.AcctName, editText.getText().toString()));
+                adapter.notifyDataSetChanged();
+                editText.setText("");
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

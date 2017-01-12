@@ -183,7 +183,7 @@ public class circleDiscussionZone extends AppCompatActivity {
             //String conteent = bundle.getString("content");
             Map<String, Object> temp = new LinkedHashMap<>();
             //temp.put("posterName", currentAcct.AcctName);
-            temp.put("posterName", "Me");//该帐号名字
+            temp.put("posterName", currentAcct.AcctName);//该帐号名字
             temp.put("postedTitle", title);
             data.add(temp);
             simpleAdapter.notifyDataSetChanged();
