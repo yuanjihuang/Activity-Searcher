@@ -44,6 +44,7 @@ public class circlelistActivity extends AppCompatActivity {
     ImageView circleUserIcon;
     TextView circleName, circleBriefIntro;
     Toolbar toolbar;
+    private int cirID = 1;
     private ProgressDialog pd1;
     private ConnectHelper connectHelper;
     private String getDataUrl;
@@ -98,7 +99,7 @@ public class circlelistActivity extends AppCompatActivity {
         setContentView(R.layout.circlelist);
         initialize();
         instance = this;
-        new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
+        new DownloadWebpageText().execute(getDataUrl);
         //for(int i = 0; i < 5; i++){
         //    circleInfosList.add(new circleInfo(imgID[i], name[i], "简介："+briefIntro[i]));
         //}
@@ -109,7 +110,8 @@ public class circlelistActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(circlelistActivity.this, circleDiscussionZone.class);
                 intent.putExtra("circleName", name[position]);
-                intent.putExtra("follower", follow.toString());
+                intent.putExtra("cirID", position+1);
+                //intent.putExtra("follower", follow.toString());
                 startActivity(intent);
             }
         });
@@ -131,7 +133,7 @@ public class circlelistActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         pd1 = ProgressDialog.show(circlelistActivity.this,null, "加载中……");
-        new circlelistActivity.DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
+        new circlelistActivity.DownloadWebpageText().execute(getDataUrl);
         circle_listView.setAdapter(circleAdapter);
         circleAdapter.notifyDataSetChanged();
         Log.d("request",CurrentAcct.AcctName);
@@ -158,23 +160,17 @@ public class circlelistActivity extends AppCompatActivity {
                     for(int i = 0; i < result.size(); i++)
                         Log.d("relist",result.get(i));
                     ///////解析json信息/////////////
-                    JSONArray CirList = JsonUtils.parse(result.get(0),"Circle");//返回形式为多个键值对组成的序列
-                    JSONArray FollowerList = JsonUtils.parse(result.get(0),"user");
+                    JSONArray CirList = JsonUtils.parse(result.get(0),"Cir");//返回形式为多个键值对组成的序列
                     circleInfosList.clear();//清除当前圈子
+
                     //Set<String> follow = new HashSet<>();//用于储存关注活动的id
-                    for(int i=0; i < FollowerList.length(); i++){
-                        try{
-                            JSONObject oj = FollowerList.getJSONObject(i);//获取Act数组中的第i个对象，是1个键值对
-                            follow.append(oj.get("acct")+"&&");
-                            //follow.add(oj.getString("acct"));//通过访问键得到数据
-                        }catch (Exception e){}
-                    }
                     for(int i=0; i<CirList.length(); i++){
                         try{
                             JSONObject oj = CirList.getJSONObject(i);
-                            name[i] = oj.getString("cirName");
-                            briefIntro[i] = oj.getString("cirIntro");
+                            name[i] = oj.getString("CirName");
+                            briefIntro[i] = oj.getString("CirIntro");
                             circleInfosList.add(new circleInfo(imgID[i], name[i], "简介："+briefIntro[i]));
+
                         }catch (Exception e){}
                     }
                     circleAdapter.notifyDataSetChanged();
