@@ -47,7 +47,7 @@
         android:layout_marginTop="50dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/logo"
+        android:background="@mipmap/ic_launcher"
         android:layout_below="@+id/login_layout1"
         android:layout_centerHorizontal="true"
         android:id="@+id/login_imageView" />

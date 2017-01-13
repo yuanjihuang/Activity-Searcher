@@ -51,7 +51,8 @@ public class circleDiscussionZone extends AppCompatActivity {
     //int imgID = R.drawable.ic_avatar;
     int[] imgID = new int[10];
     List<Map<String, Object>> data = new ArrayList<>();
-    String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ", "paul", "nike", "addi", "antony", "james", "jay"};
+    private String[] followerName;
+    //String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ", "paul", "nike", "addi", "antony", "james", "jay"};
     String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥", "高佬", "肥牛","paul", "nike", "addi", "antony", "james", "jay"};
     String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "这个可以",
             "看我ID", "一起搞事", "好像很棒","will u join us?","我来卖鞋","楼上不行","come on,find someone reliable like me",
@@ -96,7 +97,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         //设置传过来的圈子名称
         Intent intent = getIntent();
         circleName.setText(intent.getStringExtra("circleName"));
-
+        followerName = intent.getStringExtra("follower").split("&&");
         //recyclelist
         LinearLayoutManager layoutManager = new LinearLayoutManager(circleDiscussionZone.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//横向摆放
