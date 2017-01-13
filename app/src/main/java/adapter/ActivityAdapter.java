@@ -106,6 +106,7 @@ public class ActivityAdapter extends BaseAdapter {
         remark = list.get(position).getRemark();
         follow = list.get(position).isFollow();
         actID = list.get(position).getActID();
+        Log.d("ActID:",""+actID);
         //Bitmap bp = getHttpBitmap(imgUrl);
         viewHolder.img.setImageResource(imgID);
         //viewHolder.img.setImageBitmap(bp);
@@ -120,6 +121,7 @@ public class ActivityAdapter extends BaseAdapter {
         viewHolder.follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                actID = list.get(position).getActID();
                 if (follow == 0) {
                     viewHolder.follow.setImageResource(R.drawable.like);
                     currentFollow = 1;
@@ -127,6 +129,7 @@ public class ActivityAdapter extends BaseAdapter {
                     list.set(position, temp);
                     updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
                     new SetFollow().execute(updateFollow);
+                    Log.d("ActID onClick:",""+actID);
                 } else {
                     viewHolder.follow.setImageResource(R.drawable.unlike);
                     currentFollow = 0;
@@ -134,6 +137,7 @@ public class ActivityAdapter extends BaseAdapter {
                     list.set(position, temp);
                     updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
                     new SetFollow().execute(updateFollow);
+                    Log.d("ActID onClick:",""+actID);
                 }
             }
         });
