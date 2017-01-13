@@ -83,7 +83,7 @@ public class ActivitySquare extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 //跳转到详情页面
                 final ActivityAdapter.ViewHolder viewHolder =(ActivityAdapter.ViewHolder) adapter.getView(position,view,parent).getTag();
-                follow.set(position,adapter.getCurrentFollow());
+                //follow.set(position,adapter.getCurrentFollow());
                 Log.d("URL: ",name.get(position));
                 Bundle bundle = new Bundle();
                 bundle.putString("actName",name.get(position));
@@ -99,7 +99,7 @@ public class ActivitySquare extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
@@ -121,7 +121,7 @@ public class ActivitySquare extends AppCompatActivity {
             default:
                 break;
         }
-    }
+    }*/
 
     @Override
     protected void onResume() {
@@ -152,6 +152,14 @@ public class ActivitySquare extends AppCompatActivity {
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
                 }else{
+                    imgID = new ArrayList<>();
+                    actID = new ArrayList<>();
+                    imgUrl = new ArrayList<>();
+                    actUrl = new ArrayList<>();
+                    name = new ArrayList<>();
+                    info = new ArrayList<>();
+                    remark = new ArrayList<>();
+                    follow = new ArrayList<>();
                     for(int i = 0; i < result.size(); i++)
                         Log.d("relist",result.get(i));
                     ///////解析json信息/////////////
@@ -165,6 +173,7 @@ public class ActivitySquare extends AppCompatActivity {
                             favorite.add(oj.getInt("ActID"));//通过访问键得到数据
                         }catch (Exception e){}
                     }
+                    Log.d("Length: ",""+ActList.length());
                     for(int i=0; i<ActList.length(); i++){
                         try{
                             JSONObject oj = ActList.getJSONObject(i);
