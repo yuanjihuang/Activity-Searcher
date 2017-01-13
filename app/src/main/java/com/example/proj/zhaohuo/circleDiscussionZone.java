@@ -1,7 +1,9 @@
 package com.example.proj.zhaohuo;
 
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,10 +30,14 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,13 +57,18 @@ public class circleDiscussionZone extends AppCompatActivity {
     private RecyclerView recyclerView;
     //int imgID = R.drawable.ic_avatar;
     int[] imgID = new int[10];
+    private int cirID = 1;
     List<Map<String, Object>> data = new ArrayList<>();
-    private String[] followerName;
+    private String[] followerName = new String[50];
     //String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ", "paul", "nike", "addi", "antony", "james", "jay"};
-    String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥", "高佬", "肥牛","paul", "nike", "addi", "antony", "james", "jay"};
-    String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "这个可以",
-            "看我ID", "一起搞事", "好像很棒","will u join us?","我来卖鞋","楼上不行","come on,find someone reliable like me",
-            "I have championship","I can sing"};
+    //String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥", "高佬", "肥牛","paul", "nike", "addi", "antony", "james", "jay"};
+    //String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "这个可以",
+    //        "看我ID", "一起搞事", "好像很棒","will u join us?","我来卖鞋","楼上不行","come on,find someone reliable like me",
+    //        "I have championship","I can sing"};
+    private String[] postedName = new String[50];
+    private String[] postedTitle = new String[50];
+    private ConnectHelper connectHelper;
+    private String getDataUrl;
     ObjectAnimator animator;
     TextView tip, circleName;
     public void initialize(){
@@ -64,6 +76,8 @@ public class circleDiscussionZone extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         tip = (TextView) findViewById(R.id.tip);
         circleName = (TextView) findViewById(R.id.circleName1);
+        connectHelper = new ConnectHelper();
+
         for(int i = 0; i < 10; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
@@ -97,24 +111,27 @@ public class circleDiscussionZone extends AppCompatActivity {
         //设置传过来的圈子名称
         Intent intent = getIntent();
         circleName.setText(intent.getStringExtra("circleName"));
-        followerName = intent.getStringExtra("follower").split("&&");
+        cirID = intent.getIntExtra("cirID",1);
+        Log.d("cirID",cirID+".");
+        getDataUrl = connectHelper.url+"Service/get_circle_detail.jsp"+"?CirID="+cirID;
+        //followerName = intent.getStringExtra("follower").split("&&");
         //recyclelist
         LinearLayoutManager layoutManager = new LinearLayoutManager(circleDiscussionZone.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//横向摆放
         recyclerView.setLayoutManager(layoutManager);
-
-        for(int i = 0; i < followerName.length; i++){
-            circleFollowerList.add(new circleFollowerInfo(imgID[i], followerName[i]));
-        }
+        new circleDiscussionZone.DownloadWebpageText().execute(getDataUrl);
+//        for(int i = 0; i < followerName.length; i++){
+//            circleFollowerList.add(new circleFollowerInfo(imgID[i], followerName[i]));
+//        }
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleFollowerList);
         recyclerView.setAdapter(circleDiscussionZoneAdapter);
         //跟帖
-        for(int i = 0; i < postedName.length; i++){
-            Map<String, Object> temp = new LinkedHashMap<>();
-            temp.put("posterName", postedName[i]);
-            temp.put("postedTitle", postedTitle[i]);
-            data.add(temp);
-        }
+//        for(int i = 0; i < postedName.length; i++){
+//            Map<String, Object> temp = new LinkedHashMap<>();
+//            temp.put("posterName", postedName[i]);
+//            temp.put("postedTitle", postedTitle[i]);
+//            data.add(temp);
+//        }
         simpleAdapter = new SimpleAdapter(circleDiscussionZone.this, data, R.layout.posted_item,
                 new String[] {"posterName", "postedTitle"}, new int[] {R.id.poster_name, R.id.posted_title});
         posted_listView.setAdapter(simpleAdapter);//更新listView
@@ -189,6 +206,70 @@ public class circleDiscussionZone extends AppCompatActivity {
             data.add(temp);
             simpleAdapter.notifyDataSetChanged();
             circleName.setText(bundle.getString("circleName"));
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new circleDiscussionZone.DownloadWebpageText().execute(getDataUrl);
+        posted_listView.setAdapter(simpleAdapter);
+        simpleAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(circleDiscussionZoneAdapter);
+        circleDiscussionZoneAdapter.notifyDataSetChanged();
+        Log.d("request",CurrentAcct.AcctName);
+    }
+    private class DownloadWebpageText extends AsyncTask<String,Integer,List<String>> {
+        @Override
+        protected List<String> doInBackground(String... urls) {
+            try {
+                List<String> reList = connectHelper.downloadUrl(urls[0]);
+                return reList; //连接并下载数据
+            } catch (IOException e) {
+                e.printStackTrace();
+                List<String> reList = new LinkedList<>();//返回的字符串数组，若只有1个字符串取reList.get(0)
+                return reList;
+            }
+        }
+        @Override
+        protected void onPostExecute(List<String> result) {
+            if(result != null){
+                if(result.size() == 0){
+                    Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
+                }else{
+                    for(int i = 0; i < result.size(); i++)
+                        Log.d("relist",result.get(i));
+                    ///////解析json信息/////////////
+                    JSONArray FollowerList = JsonUtils.parse(result.get(0),"Followers");//返回形式为多个键值对组成的序列
+                    JSONArray PostList = JsonUtils.parse(result.get(0),"Post");//返回形式为多个键值对组成的序列
+                    data.clear();
+                    circleFollowerList.clear();//清除当前圈子
+                    //Set<String> follow = new HashSet<>();//用于储存关注活动的id
+                    for(int i=0; i<FollowerList.length(); i++){
+                        try{
+                            JSONObject oj = FollowerList.getJSONObject(i);
+                            followerName[i] = oj.getString("UserName");
+                            circleFollowerList.add(new circleFollowerInfo(imgID[i], followerName[i]));
+                        }catch (Exception e){}
+                    }
+                    for(int i = 0; i < PostList.length(); i++){
+                        try{
+                            JSONObject oj = PostList.getJSONObject(i);
+                            postedName[i] = oj.getString("PostOwner");
+                            postedTitle[i] = oj.getString("PostTitle");
+                            Map<String, Object> temp = new LinkedHashMap<>();
+                            temp.put("posterName", postedName[i]);
+                            temp.put("postedTitle", postedTitle[i]);
+                            data.add(temp);
+                        }catch (Exception e){}
+                    }
+                    simpleAdapter.notifyDataSetChanged();
+                    circleDiscussionZoneAdapter.notifyDataSetChanged();
+                    //JSONArray FavoriteList = JsonUtils.parseAct(result.get(0));
+                    /*
+                    在这里更新UI
+                     */
+                }
+            }
         }
     }
 }
