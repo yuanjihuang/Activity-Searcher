@@ -2,27 +2,24 @@ package com.example.proj.zhaohuo;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +36,7 @@ public class actDetailActivity extends AppCompatActivity {
     private List<String> sign_num = new ArrayList<>();
     private ConnectHelper connectHelper;
     private String updateFollow;
+    String STATICACTION = "com.example.project.brodcastRec";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +85,11 @@ public class actDetailActivity extends AppCompatActivity {
                     follow = 1;
                     updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
                     new SetFollow().execute(updateFollow);
+                    Intent intent2 = new Intent(STATICACTION);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name",actName);
+                    intent2.putExtras(bundle);
+                    sendBroadcast(intent2);
                 } else{
                     item.setIcon(R.drawable.unlike);
                     follow = 0;
@@ -183,6 +186,9 @@ public class actDetailActivity extends AppCompatActivity {
                         if(flag==0) alertDialog.dismiss();
                     }
                 });
+                break;
+            case R.id.shake:
+                //To-Do跳转到摇一摇界面
                 break;
             case android.R.id.home:
                 flag = 1;

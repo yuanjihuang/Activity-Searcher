@@ -3,12 +3,10 @@ package com.example.proj.zhaohuo;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,8 +24,7 @@ import java.util.Set;
 
 import adapter.ActivityAdapter;
 
-
-public class ActivitySquare extends AppCompatActivity {
+public class MyFollow extends AppCompatActivity {
     private ProgressDialog pd1;
     private ArrayList<Integer> imgID;
     private ArrayList<Integer> actID;
@@ -37,7 +34,6 @@ public class ActivitySquare extends AppCompatActivity {
     private ArrayList<String> remark;
     private ArrayList<String> imgUrl;
     private ArrayList<String> actUrl;
-
     private int resultFollow;
     private ListView listView;
     private ConnectHelper connectHelper;
@@ -46,7 +42,7 @@ public class ActivitySquare extends AppCompatActivity {
     private ActivityAdapter adapter;
     private List<ActivityInfo> list;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -55,7 +51,7 @@ public class ActivitySquare extends AppCompatActivity {
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
 
         list = new ArrayList<>();
-        new DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
+        new MyFollow.DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
         adapter = new ActivityAdapter(this,list);
         listView = (ListView) findViewById(R.id.activityList);
 
@@ -66,7 +62,7 @@ public class ActivitySquare extends AppCompatActivity {
                 //跳转到详情页面
                 final ActivityAdapter.ViewHolder viewHolder =(ActivityAdapter.ViewHolder) adapter.getView(position,view,parent).getTag();
                 //follow.set(position,adapter.getCurrentFollow());
-                    Log.d("currentFollow: ",""+adapter.getCurrentFollow());
+                Log.d("currentFollow: ",""+adapter.getCurrentFollow());
 
                 Log.d("URL: ",name.get(position));
                 Bundle bundle = new Bundle();
@@ -75,43 +71,18 @@ public class ActivitySquare extends AppCompatActivity {
                 bundle.putString("url",actUrl.get(position));
                 bundle.putInt("follow",follow.get(position));
                 bundle.putInt("position",position);
-                Intent intent = new Intent(ActivitySquare.this,actDetailActivity.class);
+                Intent intent = new Intent(MyFollow.this,actDetailActivity.class);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,0);
             }
         });
         adapter.notifyDataSetChanged();
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 0:
-                switch (resultCode){
-                    case 0:
-                        resultFollow = data.getIntExtra("resultFollow",0);
-                        int position = data.getIntExtra("position",0);
-                        follow.set(position,resultFollow);
-                        ActivityInfo temp = new ActivityInfo(imgID.get(position),imgUrl.get(position),name.get(position),info.get(position),remark.get(position),follow.get(position));
-                        list.set(position,temp);
-                        adapter.notifyDataSetChanged();
-                        Log.d("resultFollow",""+resultFollow);
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
-    }*/
-
     @Override
     protected void onResume() {
         super.onResume();
-        pd1 = ProgressDialog.show(ActivitySquare.this,null, "加载中……");
-        new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
+        pd1 = ProgressDialog.show(MyFollow.this,null, "加载中……");
+        new MyFollow.DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         Log.d("request",CurrentAcct.AcctName);
@@ -171,9 +142,10 @@ public class ActivitySquare extends AppCompatActivity {
                             info.add(oj.getString("ActInfo"));
                             remark.add(oj.getString("ActRemark"));
                             follow.add(favorite.contains(actID.get(i))?1:0);//判断是否为喜爱活动
-                            Log.d("follow",""+follow.get(i));
-                            ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
-                            list.add(temp);
+                            if(follow.get(i)==1){
+                                ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
+                                list.add(temp);
+                            }
                         }catch (Exception e){}
                     }
                     adapter.notifyDataSetChanged();
