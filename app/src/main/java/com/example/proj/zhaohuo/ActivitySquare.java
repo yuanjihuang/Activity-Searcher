@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -75,6 +74,7 @@ public class ActivitySquare extends AppCompatActivity {
                 bundle.putString("url",actUrl.get(position));
                 bundle.putInt("follow",follow.get(position));
                 bundle.putInt("position",position);
+                bundle.putStringArrayList("urlList",actUrl);
                 Intent intent = new Intent(ActivitySquare.this,actDetailActivity.class);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,0);
