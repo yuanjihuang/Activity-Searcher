@@ -5,6 +5,7 @@ package com.example.proj.zhaohuo;
  */
 
 public class ActivityInfo {
+    private Integer actID;
     private Integer imgID;
     private String imgUrl;
     private String name;
@@ -12,13 +13,17 @@ public class ActivityInfo {
     private String remark;
     private Integer follow;
 
-    public ActivityInfo(int imgID, String imgUrl,String name, String info, String remark, int follow){
+    public ActivityInfo(Integer actID, Integer imgID, String imgUrl,String name, String info, String remark, Integer follow){
+        this.actID = actID;
         this.imgID = imgID;
         this.imgUrl = imgUrl;
         this.name = name;
         this.info = info;
         this.remark = remark;
         this.follow = follow;
+    }
+    public Integer getActID(){
+        return actID;
     }
 
     public Integer getImgID(){

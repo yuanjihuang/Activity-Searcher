@@ -1,6 +1,7 @@
 package com.example.proj.zhaohuo;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,10 @@ import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class actDetailActivity extends AppCompatActivity {
@@ -82,11 +85,13 @@ public class actDetailActivity extends AppCompatActivity {
                 if(follow==0){
                     item.setIcon(R.drawable.like);
                     follow = 1;
-                    updateFollow = connectHelper.url+"Service/set_follow.jsp?=AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
+                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
+                    new SetFollow().execute(updateFollow);
                 } else{
                     item.setIcon(R.drawable.unlike);
                     follow = 0;
-                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?=AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
+                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
+                    new SetFollow().execute(updateFollow);
                 }
                 break;
             case R.id.sign_up:
@@ -192,5 +197,22 @@ public class actDetailActivity extends AppCompatActivity {
         setResult(0,newIntent);
         if(flag==1) finish();
         return super.onOptionsItemSelected(item);
+    }
+    private class SetFollow extends AsyncTask<String,Integer,List<String>> {
+        @Override
+        protected List<String> doInBackground(String... urls) {
+            try {
+                List<String> reList = connectHelper.downloadUrl(urls[0]);
+                return reList; //连接并下载数据
+            } catch (IOException e) {
+                e.printStackTrace();
+                List<String> reList = new LinkedList<>();//返回的字符串数组，若只有1个字符串取reList.get(0)
+                return reList;
+            }
+        }
+        @Override
+        protected void onPostExecute(List<String> result) {
+
+        }
     }
 }

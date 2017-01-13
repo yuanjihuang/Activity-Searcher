@@ -50,6 +50,7 @@ public class ActivitySquare extends AppCompatActivity {
     private ListView listView;
     private ConnectHelper connectHelper;
     private String getDataUrl;
+    private String updateFollow;
     private ActivityAdapter adapter;
     private List<ActivityInfo> list;
     @Override
@@ -61,19 +62,8 @@ public class ActivitySquare extends AppCompatActivity {
         connectHelper = new ConnectHelper();
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
 
-        /*for(int i=0; i<11; i++){
-            String s = "st"+i;
-            imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
-            follow[i] = i%2;
-        }*/
-
-        /*name = new String[11];
-        info = new String[11];
-        remark = new String[11];
-        actUrl = new String[11];
-        imgUrl = new String[11];*/
         list = new ArrayList<>();
-        new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
+        new DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
         adapter = new ActivityAdapter(this,list);
         listView = (ListView) findViewById(R.id.activityList);
 
@@ -84,6 +74,8 @@ public class ActivitySquare extends AppCompatActivity {
                 //跳转到详情页面
                 final ActivityAdapter.ViewHolder viewHolder =(ActivityAdapter.ViewHolder) adapter.getView(position,view,parent).getTag();
                 //follow.set(position,adapter.getCurrentFollow());
+                    Log.d("currentFollow: ",""+adapter.getCurrentFollow());
+
                 Log.d("URL: ",name.get(position));
                 Bundle bundle = new Bundle();
                 bundle.putString("actName",name.get(position));
@@ -127,7 +119,7 @@ public class ActivitySquare extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         pd1 = ProgressDialog.show(ActivitySquare.this,null, "加载中……");
-        new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
+        new ActivitySquare.DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         Log.d("request",CurrentAcct.AcctName);
@@ -171,6 +163,7 @@ public class ActivitySquare extends AppCompatActivity {
                         try{
                             JSONObject oj = FavoriteList.getJSONObject(i);//获取Act数组中的第i个对象，是1个键值对
                             favorite.add(oj.getInt("ActID"));//通过访问键得到数据
+                            Log.d("ssss",""+oj.getInt("ActID"));
                         }catch (Exception e){}
                     }
                     Log.d("Length: ",""+ActList.length());
@@ -185,8 +178,9 @@ public class ActivitySquare extends AppCompatActivity {
                             name.add(oj.getString("ActName"));
                             info.add(oj.getString("ActInfo"));
                             remark.add(oj.getString("ActRemark"));
-                            follow.add(favorite.contains(imgID.get(i))?1:0);//判断是否为喜爱活动
-                            ActivityInfo temp = new ActivityInfo(imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
+                            follow.add(favorite.contains(actID.get(i))?1:0);//判断是否为喜爱活动
+                            Log.d("follow",""+follow.get(i));
+                            ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
                             list.add(temp);
                         }catch (Exception e){}
                     }
