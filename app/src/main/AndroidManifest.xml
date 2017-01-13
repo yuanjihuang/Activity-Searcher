@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,35 +13,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity android:name=".startActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
         <activity android:name=".protocolActivity" />
-        <activity android:name=".UserActivity"
-            android:label="个人信息"></activity>
-        <activity android:name=".userInfoActivity"></activity>
-        <activity android:name=".communityInfoActivity"></activity>
-        <activity android:name=".circlelistActivity"
-            android:label="圈子"></activity>
-        <activity android:name=".circleDiscussionZone"></activity>
-        <activity android:name=".ActivitySquare"
-            android:label="活动广场"></activity>
-        <activity android:name=".Main2Activity">
-        </activity>
-        <activity android:name=".loginActivity">
-        </activity>
-        <activity android:name=".actDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:label="活动详情">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".commentActivity"></activity>
-        <activity android:name=".PostMsgActivity"></activity>
-        <activity android:name=".postDetailActivity"/>
+        <activity
+            android:name=".UserActivity"
+            android:label="个人信息" />
+        <activity android:name=".userInfoActivity" />
+        <activity android:name=".communityInfoActivity" />
+        <activity
+            android:name=".circlelistActivity"
+            android:label="圈子" />
+        <activity android:name=".circleDiscussionZone" />
+        <activity
+            android:name=".ActivitySquare"
+            android:label="活动广场" />
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".loginActivity"></activity>
+        <activity
+            android:name=".actDetailActivity"
+            android:label="活动详情"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
+        <activity android:name=".commentActivity" />
+        <activity android:name=".PostMsgActivity" />
+        <activity android:name=".postDetailActivity" />
+        <activity
+            android:name=".MyFollow"
+            android:label="我的收藏"></activity>
     </application>
 
 </manifest>

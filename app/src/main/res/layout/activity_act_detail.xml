@@ -7,14 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.proj.zhaohuo.actDetailActivity">
 
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/grayheart"
-        android:id="@+id/act_detail_heart" />
-
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"

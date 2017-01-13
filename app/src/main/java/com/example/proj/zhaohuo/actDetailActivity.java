@@ -1,25 +1,30 @@
 package com.example.proj.zhaohuo;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class actDetailActivity extends AppCompatActivity {
@@ -28,14 +33,15 @@ public class actDetailActivity extends AppCompatActivity {
     private String url;
     private int follow;
     private int position;
+    private int actID;
+    private String actName;
     private List<String> sign_name = new ArrayList<>();
     private List<String> sign_num = new ArrayList<>();
-    private ImageButton heart;
+    private ConnectHelper connectHelper;
+    private String updateFollow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        heart = (ImageButton)findViewById(R.id.act_detail_heart);
-        final String STATICACTION = "com.example.project.brodcastRec";
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -47,27 +53,12 @@ public class actDetailActivity extends AppCompatActivity {
         Log.d("url: ",url);
         follow = bundle.getInt("follow");
         position = bundle.getInt("position");
+        actID = bundle.getInt("actID");
+        actName = bundle.getString("actName");
         webView = (WebView) findViewById(R.id.webView);
         webView.loadUrl(url);
-        heart.setTag("未关注");
-        heart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(heart.getTag()=="未关注"){
-                    heart.setTag("已关注");
-                    heart.setBackgroundDrawable(getResources().getDrawable(R.drawable.redheart));
-                    Intent intent = new Intent(STATICACTION);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name","活动名字");
-                    intent.putExtras(bundle);
-                    sendBroadcast(intent);
-                }
-                else{
-                    heart.setTag("未关注");
-                    heart.setBackgroundDrawable(getResources().getDrawable(R.drawable.grayheart));
-                }
-            }
-        });
+        connectHelper = new ConnectHelper();
+        updateFollow = connectHelper.url;
     }
 
     @Override
@@ -94,9 +85,13 @@ public class actDetailActivity extends AppCompatActivity {
                 if(follow==0){
                     item.setIcon(R.drawable.like);
                     follow = 1;
+                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
+                    new SetFollow().execute(updateFollow);
                 } else{
                     item.setIcon(R.drawable.unlike);
                     follow = 0;
+                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
+                    new SetFollow().execute(updateFollow);
                 }
                 break;
             case R.id.sign_up:
@@ -189,6 +184,9 @@ public class actDetailActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.shake:
+                //To-Do跳转到摇一摇界面
+                break;
             case android.R.id.home:
                 flag = 1;
                 break;
@@ -202,5 +200,22 @@ public class actDetailActivity extends AppCompatActivity {
         setResult(0,newIntent);
         if(flag==1) finish();
         return super.onOptionsItemSelected(item);
+    }
+    private class SetFollow extends AsyncTask<String,Integer,List<String>> {
+        @Override
+        protected List<String> doInBackground(String... urls) {
+            try {
+                List<String> reList = connectHelper.downloadUrl(urls[0]);
+                return reList; //连接并下载数据
+            } catch (IOException e) {
+                e.printStackTrace();
+                List<String> reList = new LinkedList<>();//返回的字符串数组，若只有1个字符串取reList.get(0)
+                return reList;
+            }
+        }
+        @Override
+        protected void onPostExecute(List<String> result) {
+
+        }
     }
 }

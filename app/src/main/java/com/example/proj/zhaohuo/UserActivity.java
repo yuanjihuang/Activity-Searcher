@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -21,11 +22,13 @@ public class UserActivity extends AppCompatActivity {
     private String get_user_info;
     private ListView more_listview;
     private RelativeLayout userInfo;
+    private Button myFavorite;
     private void initialize(){
         connectHelper = new ConnectHelper();
         get_user_info = connectHelper.url+"/Service/get_user_info.jsp";
         more_listview = (ListView)findViewById(R.id.more_listview);
         userInfo = (RelativeLayout)findViewById(R.id.userInfo);
+        myFavorite = (Button) findViewById(R.id.myFavorite);
         more = new ArrayList<>();
         more.add("问题反馈");
         more.add("关于我们");
@@ -44,6 +47,13 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this,userInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+        myFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this,MyFollow.class);
                 startActivity(intent);
             }
         });
