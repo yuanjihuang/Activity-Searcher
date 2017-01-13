@@ -27,7 +27,7 @@ import java.util.List;
 public class ActivityAdapter extends BaseAdapter {
     private List<ActivityInfo> list;
     private Context context;
-    private int currentFollow;
+    private Integer currentFollow;
 
     public ActivityAdapter(Context context, List<ActivityInfo> list) {
         this.list = list;
@@ -125,7 +125,7 @@ public class ActivityAdapter extends BaseAdapter {
         public ImageView comment;
     }
 
-    public int getCurrentFollow() {
+    public Integer getCurrentFollow() {
         return currentFollow;
     }
 

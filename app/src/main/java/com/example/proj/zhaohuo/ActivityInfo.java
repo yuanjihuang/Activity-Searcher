@@ -5,12 +5,12 @@ package com.example.proj.zhaohuo;
  */
 
 public class ActivityInfo {
-    private int imgID;
+    private Integer imgID;
     private String imgUrl;
     private String name;
     private String info;
     private String remark;
-    private int follow;
+    private Integer follow;
 
     public ActivityInfo(int imgID, String imgUrl,String name, String info, String remark, int follow){
         this.imgID = imgID;
@@ -21,7 +21,7 @@ public class ActivityInfo {
         this.follow = follow;
     }
 
-    public int getImgID(){
+    public Integer getImgID(){
         return imgID;
     }
 
@@ -41,7 +41,7 @@ public class ActivityInfo {
         return remark;
     }
 
-    public int isFollow(){
+    public Integer isFollow(){
         return follow;
     }
 }

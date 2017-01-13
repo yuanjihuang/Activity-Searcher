@@ -30,8 +30,12 @@ public class actDetailActivity extends AppCompatActivity {
     private String url;
     private int follow;
     private int position;
+    private int actID;
+    private String actName;
     private List<String> sign_name = new ArrayList<>();
     private List<String> sign_num = new ArrayList<>();
+    private ConnectHelper connectHelper;
+    private String updateFollow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +50,12 @@ public class actDetailActivity extends AppCompatActivity {
         Log.d("url: ",url);
         follow = bundle.getInt("follow");
         position = bundle.getInt("position");
+        actID = bundle.getInt("actID");
+        actName = bundle.getString("actName");
         webView = (WebView) findViewById(R.id.webView);
         webView.loadUrl(url);
+        connectHelper = new ConnectHelper();
+        updateFollow = connectHelper.url;
     }
 
     @Override
@@ -74,9 +82,11 @@ public class actDetailActivity extends AppCompatActivity {
                 if(follow==0){
                     item.setIcon(R.drawable.like);
                     follow = 1;
+                    updateFollow = connectHelper.url+"Service/set_follow.jsp?=AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
                 } else{
                     item.setIcon(R.drawable.unlike);
                     follow = 0;
+                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?=AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
                 }
                 break;
             case R.id.sign_up:

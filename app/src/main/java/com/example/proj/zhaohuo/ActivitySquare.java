@@ -29,13 +29,23 @@ import adapter.ActivityAdapter;
 
 public class ActivitySquare extends AppCompatActivity {
     private ProgressDialog pd1;
-    private int[] imgID = new int[11];
+    /*private int[] imgID = new int[11];
     private int[] follow = new int[11];
+    private int[] actID;
     private String[] name;
     private String[] info;
     private String[] remark;
     private String[] imgUrl;
-    private String[] actUrl;
+    private String[] actUrl;*/
+    private ArrayList<Integer> imgID;
+    private ArrayList<Integer> actID;
+    private ArrayList<Integer> follow;
+    private ArrayList<String> name;
+    private ArrayList<String> info;
+    private ArrayList<String> remark;
+    private ArrayList<String> imgUrl;
+    private ArrayList<String> actUrl;
+
     private int resultFollow;
     private ListView listView;
     private ConnectHelper connectHelper;
@@ -57,11 +67,11 @@ public class ActivitySquare extends AppCompatActivity {
             follow[i] = i%2;
         }*/
 
-        name = new String[11];
+        /*name = new String[11];
         info = new String[11];
         remark = new String[11];
         actUrl = new String[11];
-        imgUrl = new String[11];
+        imgUrl = new String[11];*/
         list = new ArrayList<>();
         new DownloadWebpageText().execute(getDataUrl+"?Name="+CurrentAcct.AcctName);
         adapter = new ActivityAdapter(this,list);
@@ -73,11 +83,13 @@ public class ActivitySquare extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 //跳转到详情页面
                 final ActivityAdapter.ViewHolder viewHolder =(ActivityAdapter.ViewHolder) adapter.getView(position,view,parent).getTag();
-                follow[position] = adapter.getCurrentFollow();
-                Log.d("URL: ",name[position]);
+                follow.set(position,adapter.getCurrentFollow());
+                Log.d("URL: ",name.get(position));
                 Bundle bundle = new Bundle();
-                bundle.putString("url",actUrl[position]);
-                bundle.putInt("follow",follow[position]);
+                bundle.putString("actName",name.get(position));
+                bundle.putInt("actID",actID.get(position));
+                bundle.putString("url",actUrl.get(position));
+                bundle.putInt("follow",follow.get(position));
                 bundle.putInt("position",position);
                 Intent intent = new Intent(ActivitySquare.this,actDetailActivity.class);
                 intent.putExtras(bundle);
@@ -96,8 +108,8 @@ public class ActivitySquare extends AppCompatActivity {
                     case 0:
                         resultFollow = data.getIntExtra("resultFollow",0);
                         int position = data.getIntExtra("position",0);
-                        follow[position] = resultFollow;
-                        ActivityInfo temp = new ActivityInfo(imgID[position],imgUrl[position],name[position],info[position],remark[position],follow[position]);
+                        follow.set(position,resultFollow);
+                        ActivityInfo temp = new ActivityInfo(imgID.get(position),imgUrl.get(position),name.get(position),info.get(position),remark.get(position),follow.get(position));
                         list.set(position,temp);
                         adapter.notifyDataSetChanged();
                         Log.d("resultFollow",""+resultFollow);
@@ -157,14 +169,15 @@ public class ActivitySquare extends AppCompatActivity {
                         try{
                             JSONObject oj = ActList.getJSONObject(i);
                             String tem = "st" + oj.getInt("ActID");
-                            imgID[i] = getResources().getIdentifier(tem,"drawable",getPackageName());
-                            imgUrl[i] = oj.getString("ActUrl");
-                            actUrl[i] = oj.getString("ActUrl");
-                            name[i] = oj.getString("ActName");
-                            info[i] = oj.getString("ActInfo");
-                            remark[i] = oj.getString("ActRemark");
-                            follow[i] = favorite.contains(imgID[i])?1:0;//判断是否为喜爱活动
-                            ActivityInfo temp = new ActivityInfo(imgID[i],imgUrl[i],name[i],info[i],remark[i],follow[i]);
+                            actID.add(oj.getInt("ActID"));
+                            imgID.add(getResources().getIdentifier(tem,"drawable",getPackageName()));
+                            imgUrl.add(oj.getString("ActUrl"));
+                            actUrl.add(oj.getString("ActUrl"));
+                            name.add(oj.getString("ActName"));
+                            info.add(oj.getString("ActInfo"));
+                            remark.add(oj.getString("ActRemark"));
+                            follow.add(favorite.contains(imgID.get(i))?1:0);//判断是否为喜爱活动
+                            ActivityInfo temp = new ActivityInfo(imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
                             list.add(temp);
                         }catch (Exception e){}
                     }
