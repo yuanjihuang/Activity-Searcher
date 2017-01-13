@@ -12,10 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity android:name=".startActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name=".registerActivity" />
         <activity android:name=".teamActivity" />
@@ -36,6 +33,10 @@
         <activity android:name=".actDetailActivity"
             android:theme="@style/Theme.AppCompat.Light"
             android:label="活动详情">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".commentActivity"></activity>
         <activity android:name=".PostMsgActivity"></activity>
