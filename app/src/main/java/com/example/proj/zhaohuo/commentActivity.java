@@ -95,9 +95,9 @@ public class commentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String input = editText.getText().toString();
                 int userImg = getResources().getIdentifier("ic_avatar","drawable",getPackageName());
-                updateComment = updateComment+"Service/set_comment.jsp?AcctName="
+                /*updateComment = updateComment+"Service/set_comment.jsp?AcctName="
                         +CurrentAcct.AcctName+"&ActID="+actID+"&Comment="+input;
-                new SetComment().execute(updateComment);
+                new SetComment().execute(updateComment);*/
                 CommentInfo temp = new CommentInfo(userImg,"",CurrentAcct.AcctName,input);
                 list.add(temp);
                 editText.setText("");
