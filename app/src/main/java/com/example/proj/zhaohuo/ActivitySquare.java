@@ -53,7 +53,6 @@ public class ActivitySquare extends AppCompatActivity {
         setContentView(R.layout.activitylist);
         connectHelper = new ConnectHelper();
         getDataUrl = connectHelper.url+"Service/main_activity.jsp";
-
         list = new ArrayList<>();
         new DownloadWebpageText().execute(getDataUrl+"?AcctName="+CurrentAcct.AcctName);
         adapter = new ActivityAdapter(this,list);
@@ -75,6 +74,7 @@ public class ActivitySquare extends AppCompatActivity {
                 bundle.putString("url",actUrl.get(position));
                 bundle.putInt("follow",follow.get(position));
                 bundle.putInt("position",position);
+                bundle.putStringArrayList("urlList",actUrl);
                 Intent intent = new Intent(ActivitySquare.this,actDetailActivity.class);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,0);
@@ -136,16 +136,10 @@ public class ActivitySquare extends AppCompatActivity {
                 if(result.size() == 0){
                     Toast.makeText(getApplicationContext(),"没有返回值，请再试一次！",Toast.LENGTH_SHORT).show();
                 }else{
-                    imgID = new ArrayList<>();
-                    actID = new ArrayList<>();
-                    imgUrl = new ArrayList<>();
-                    actUrl = new ArrayList<>();
-                    name = new ArrayList<>();
-                    info = new ArrayList<>();
-                    remark = new ArrayList<>();
-                    follow = new ArrayList<>();
-                    for(int i = 0; i < result.size(); i++)
-                        Log.d("relist",result.get(i));
+                    imgID = new ArrayList<>();actID = new ArrayList<>();
+                    imgUrl = new ArrayList<>();actUrl = new ArrayList<>();
+                    name = new ArrayList<>();info = new ArrayList<>();
+                    remark = new ArrayList<>();follow = new ArrayList<>();
                     ///////解析json信息/////////////
                     JSONArray ActList = JsonUtils.parse(result.get(0),"Act");//返回形式为多个键值对组成的序列
                     JSONArray FavoriteList = JsonUtils.parse(result.get(0),"Favorite");
@@ -155,10 +149,8 @@ public class ActivitySquare extends AppCompatActivity {
                         try{
                             JSONObject oj = FavoriteList.getJSONObject(i);//获取Act数组中的第i个对象，是1个键值对
                             favorite.add(oj.getInt("ActID"));//通过访问键得到数据
-                            Log.d("ssss",""+oj.getInt("ActID"));
                         }catch (Exception e){}
                     }
-                    Log.d("Length: ",""+ActList.length());
                     for(int i=0; i<ActList.length(); i++){
                         try{
                             JSONObject oj = ActList.getJSONObject(i);
@@ -172,7 +164,8 @@ public class ActivitySquare extends AppCompatActivity {
                             remark.add(oj.getString("ActRemark"));
                             follow.add(favorite.contains(actID.get(i))?1:0);//判断是否为喜爱活动
                             Log.d("follow",""+follow.get(i));
-                            ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
+                            ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),
+                                    name.get(i),info.get(i),remark.get(i),follow.get(i));
                             list.add(temp);
                         }catch (Exception e){}
                     }

@@ -8,6 +8,7 @@ import android.widget.TabHost;
 /**
  * Created by Eafun on 2016/12/8.
  */
+@SuppressWarnings("deprecation")
 
 public class Main2Activity extends TabActivity {
     TabHost tabHost = null;

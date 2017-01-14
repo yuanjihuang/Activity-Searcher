@@ -127,7 +127,8 @@ public class ActivityAdapter extends BaseAdapter {
                     currentFollow = 1;
                     ActivityInfo temp = new ActivityInfo(actID,imgID, imgUrl, name, info, remark, 1);
                     list.set(position, temp);
-                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
+                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="
+                            +CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
                     new SetFollow().execute(updateFollow);
                     Log.d("ActID onClick:",""+actID);
                 } else {
@@ -135,7 +136,8 @@ public class ActivityAdapter extends BaseAdapter {
                     currentFollow = 0;
                     ActivityInfo temp = new ActivityInfo(actID,imgID, imgUrl, name, info, remark, 0);
                     list.set(position, temp);
-                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
+                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="
+                            +CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
                     new SetFollow().execute(updateFollow);
                     Log.d("ActID onClick:",""+actID);
                 }

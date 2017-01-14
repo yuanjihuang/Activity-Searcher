@@ -32,6 +32,7 @@ public class actDetailActivity extends AppCompatActivity {
     private int position;
     private int actID;
     private String actName;
+    private ArrayList actUrl;
     private List<String> sign_name = new ArrayList<>();
     private List<String> sign_num = new ArrayList<>();
     private ConnectHelper connectHelper;
@@ -53,6 +54,7 @@ public class actDetailActivity extends AppCompatActivity {
         position = bundle.getInt("position");
         actID = bundle.getInt("actID");
         actName = bundle.getString("actName");
+        actUrl = bundle.getStringArrayList("urlList");
         webView = (WebView) findViewById(R.id.webView);
         webView.loadUrl(url);
         connectHelper = new ConnectHelper();
@@ -83,7 +85,8 @@ public class actDetailActivity extends AppCompatActivity {
                 if(follow==0){
                     item.setIcon(R.drawable.like);
                     follow = 1;
-                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
+                    updateFollow = connectHelper.url+"Service/set_follow.jsp?AcctName="
+                            +CurrentAcct.AcctName+"&ActID="+actID; //传回后台新增关注
                     new SetFollow().execute(updateFollow);
                     Intent intent2 = new Intent(STATICACTION);
                     Bundle bundle = new Bundle();
@@ -93,7 +96,8 @@ public class actDetailActivity extends AppCompatActivity {
                 } else{
                     item.setIcon(R.drawable.unlike);
                     follow = 0;
-                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="+CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
+                    updateFollow = connectHelper.url+"Service/delete_follow.jsp?AcctName="
+                            +CurrentAcct.AcctName+"&ActID="+actID; //传回后台取消关注
                     new SetFollow().execute(updateFollow);
                 }
                 break;
@@ -188,7 +192,11 @@ public class actDetailActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.shake:
-                //To-Do跳转到摇一摇界面
+                Bundle bundle2 = new Bundle();
+                bundle2.putStringArrayList("URLLIST",actUrl);
+                Intent intent3 = new Intent(actDetailActivity.this,shakeActivity.class);
+                intent3.putExtras(bundle2);
+                startActivityForResult(intent3,0);
                 break;
             case android.R.id.home:
                 flag = 1;

@@ -143,7 +143,8 @@ public class MyFollow extends AppCompatActivity {
                             remark.add(oj.getString("ActRemark"));
                             follow.add(favorite.contains(actID.get(i))?1:0);//判断是否为喜爱活动
                             if(follow.get(i)==1){
-                                ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),name.get(i),info.get(i),remark.get(i),follow.get(i));
+                                ActivityInfo temp = new ActivityInfo(actID.get(i),imgID.get(i),imgUrl.get(i),
+                                        name.get(i),info.get(i),remark.get(i),follow.get(i));
                                 list.add(temp);
                             }
                         }catch (Exception e){}
