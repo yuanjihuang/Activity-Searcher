@@ -31,6 +31,7 @@
             android:name=".circlelistActivity"
             android:label="圈子" />
         <activity android:name=".circleDiscussionZone" />
+        <activity android:name=".shakeActivity" />
         <activity
             android:name=".ActivitySquare"
             android:label="活动广场" />
