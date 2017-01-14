@@ -15,7 +15,8 @@ import java.util.Map;
 
 public class PostMsgActivity extends AppCompatActivity {
     EditText postTitle, postContent;
-    String circleName="";
+    private String circleName="";
+    private int cirID = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class PostMsgActivity extends AppCompatActivity {
         postContent = (EditText) findViewById(R.id.content);
         Intent intent = getIntent();
         circleName = intent.getStringExtra("circleName");
+        cirID = intent.getIntExtra("cirID", 1);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class PostMsgActivity extends AppCompatActivity {
                 Toast.makeText(PostMsgActivity.this, "请输入完整帖子", Toast.LENGTH_SHORT).show();
             }
             else{
+                //TO-DO 传入数据库 圈子ID为cirID，发布title为title，内容为content，发帖人ID就是登陆帐号的ID
                 Intent intent = new Intent(PostMsgActivity.this, circleDiscussionZone.class);
                 intent.putExtra("title", title);
                 intent.putExtra("content", content);

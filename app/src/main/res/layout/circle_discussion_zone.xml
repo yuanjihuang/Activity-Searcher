@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="他们都关注了这个活动："
+                android:text="他们都加入了这个圈子："
                 android:textSize="18sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"

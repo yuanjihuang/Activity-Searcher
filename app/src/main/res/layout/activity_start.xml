@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        android:layout_marginLeft="350dp"
-        android:textSize="30sp">
+        android:textSize="28sp">
     </com.example.proj.zhaohuo.CTextView>
     <com.example.proj.zhaohuo.CTextView
         android:id="@+id/cTextView1"
@@ -24,8 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
-        android:textSize="30sp"
-        android:layout_marginLeft="170dp">
+        android:textSize="28sp">
     </com.example.proj.zhaohuo.CTextView>
 
 </RelativeLayout>

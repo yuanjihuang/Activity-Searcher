@@ -2,7 +2,9 @@ package com.example.proj.zhaohuo;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 
 /**
@@ -22,7 +24,7 @@ import android.widget.TextView;
  */
 public class CTextView extends ViewGroup {
     private Context context;
-
+    public int len = 2;
     public CTextView(Context context) {
         super(context);
         this.context = context;
@@ -40,6 +42,8 @@ public class CTextView extends ViewGroup {
 
     public void setText(String text, final Animation animation, int duration) {
         int time = 0;
+        this.len = text.length();
+        Log.d("len", len+"");
         if(text != null && !text.isEmpty()) {
             char[] characters = text.toCharArray();
             for(char c : characters) {
@@ -73,7 +77,9 @@ public class CTextView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int childLeft = 0;
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        int width = wm.getDefaultDisplay().getWidth();
+        int childLeft = width/2-(len/2)*57;
         // 遍历所有子视图
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {

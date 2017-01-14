@@ -58,13 +58,11 @@ public class circleDiscussionZone extends AppCompatActivity {
     //int imgID = R.drawable.ic_avatar;
     int[] imgID = new int[10];
     private int cirID = 1;
+    private int followTag = 0;
     List<Map<String, Object>> data = new ArrayList<>();
+    Map<String, Object> temp1 = new LinkedHashMap<>();
+    private String content;
     private String[] followerName = new String[50];
-    //String[] followerName = {"zhouHF", "huangYJ", "HeYF", "HongZZ", "paul", "nike", "addi", "antony", "james", "jay"};
-    //String[] postedName = {"Sun", "田鸡", "山大王", "我是帅哥", "高佬", "肥牛","paul", "nike", "addi", "antony", "james", "jay"};
-    //String[] postedTitle = {"1405Sun求组队", "陶渊明独爱*", "这个可以",
-    //        "看我ID", "一起搞事", "好像很棒","will u join us?","我来卖鞋","楼上不行","come on,find someone reliable like me",
-    //        "I have championship","I can sing"};
     private String[] postedName = new String[50];
     private String[] postedTitle = new String[50];
     private ConnectHelper connectHelper;
@@ -77,7 +75,7 @@ public class circleDiscussionZone extends AppCompatActivity {
         tip = (TextView) findViewById(R.id.tip);
         circleName = (TextView) findViewById(R.id.circleName1);
         connectHelper = new ConnectHelper();
-
+        content = "";
         for(int i = 0; i < 10; i++){
             String s = "st" + i;
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
@@ -114,24 +112,16 @@ public class circleDiscussionZone extends AppCompatActivity {
         cirID = intent.getIntExtra("cirID",1);
         Log.d("cirID",cirID+".");
         getDataUrl = connectHelper.url+"Service/get_circle_detail.jsp"+"?CirID="+cirID;
-        //followerName = intent.getStringExtra("follower").split("&&");
+
         //recyclelist
         LinearLayoutManager layoutManager = new LinearLayoutManager(circleDiscussionZone.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//横向摆放
         recyclerView.setLayoutManager(layoutManager);
         new circleDiscussionZone.DownloadWebpageText().execute(getDataUrl);
-//        for(int i = 0; i < followerName.length; i++){
-//            circleFollowerList.add(new circleFollowerInfo(imgID[i], followerName[i]));
-//        }
+
         circleDiscussionZoneAdapter = new CircleDiscussionZoneAdapter(this, circleFollowerList);
         recyclerView.setAdapter(circleDiscussionZoneAdapter);
-        //跟帖
-//        for(int i = 0; i < postedName.length; i++){
-//            Map<String, Object> temp = new LinkedHashMap<>();
-//            temp.put("posterName", postedName[i]);
-//            temp.put("postedTitle", postedTitle[i]);
-//            data.add(temp);
-//        }
+
         simpleAdapter = new SimpleAdapter(circleDiscussionZone.this, data, R.layout.posted_item,
                 new String[] {"posterName", "postedTitle"}, new int[] {R.id.poster_name, R.id.posted_title});
         posted_listView.setAdapter(simpleAdapter);//更新listView
@@ -142,6 +132,9 @@ public class circleDiscussionZone extends AppCompatActivity {
                 Intent intent = new Intent(circleDiscussionZone.this, postDetailActivity.class);
                 intent.putExtra("name", data.get(position).get("posterName").toString());
                 intent.putExtra("circleName", circleName.getText().toString());
+                intent.putExtra("cirID", cirID);
+                intent.putExtra("postID", position+1);
+                intent.putExtra("content", content);
                 startActivityForResult(intent, 0);
             }
         });
@@ -179,6 +172,14 @@ public class circleDiscussionZone extends AppCompatActivity {
             case android.R.id.home:
                 flag = 1;
                 break;
+            case R.id.circle_follow:
+                if(followTag == 0){
+                    item.setIcon(R.drawable.like);
+                    followTag = 1;
+                }else{
+                    item.setIcon(R.drawable.unlike);
+                    followTag =0;
+                }
             default:
                 break;
         }
@@ -187,7 +188,9 @@ public class circleDiscussionZone extends AppCompatActivity {
             Intent intent = new Intent(circleDiscussionZone.this, PostMsgActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("circleName", circleName.getText().toString());
+            //bundle.putInt("cirID", cirID);
             intent.putExtras(bundle);
+            intent.putExtra("cirID", cirID);
             //intent.putExtra("circleName", circleName.getText().toString());
             startActivityForResult(intent, 0);
         }
@@ -198,13 +201,14 @@ public class circleDiscussionZone extends AppCompatActivity {
         if(requestCode == 0 && resultCode == 0){
             Bundle bundle = intent.getExtras();
             String title = bundle.getString("title");
+            content = bundle.getString("content");
             //String conteent = bundle.getString("content");
-            Map<String, Object> temp = new LinkedHashMap<>();
+
             //temp.put("posterName", currentAcct.AcctName);
-            temp.put("posterName", currentAcct.AcctName);//该帐号名字
-            temp.put("postedTitle", title);
-            data.add(temp);
-            simpleAdapter.notifyDataSetChanged();
+            temp1.put("posterName", currentAcct.AcctName);//该帐号名字
+            temp1.put("postedTitle", title);
+            //data.add(temp1);
+            //simpleAdapter.notifyDataSetChanged();
             circleName.setText(bundle.getString("circleName"));
         }
     }
@@ -261,6 +265,9 @@ public class circleDiscussionZone extends AppCompatActivity {
                             temp.put("postedTitle", postedTitle[i]);
                             data.add(temp);
                         }catch (Exception e){}
+                    }
+                    if(!content.equals("")){
+                        data.add(temp1);
                     }
                     simpleAdapter.notifyDataSetChanged();
                     circleDiscussionZoneAdapter.notifyDataSetChanged();

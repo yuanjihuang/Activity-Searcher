@@ -52,12 +52,6 @@ public class circlelistActivity extends AppCompatActivity {
     private String[] name = new String[11];
     private String[] briefIntro = new String[11];
     private StringBuilder follow = new StringBuilder();
-    //String[] name = {"职来职往", "可口可乐营销大赛", "落叶送祝福", "寒假招宣","环保服装设计大赛"};
-    //String[] briefIntro = {"中大职协的招牌活动，致力于为同学们创造更多的就业机会，锻炼职场能力",
-    //        "中大职协的招牌活动，与可口可乐公司合作，锻炼实战营销能力，感受世界500强的魅力",
-    //       "中大绿叶社举办的落叶送祝福收集落叶，制作精美书签于圣诞节送到同学们手中",
-    //        "中大招协每年的寒宣已经开始报名啦，回母校宣传中大让更多学弟学妹来到这里吧",
-     //       "中大绿叶社举办的环保服装设计大赛汇聚了以环保为理念的优秀作品设计并现场走秀"};
     ListView circle_listView;
     CircleAdapter circleAdapter;
     public static circlelistActivity instance = null;
@@ -73,22 +67,6 @@ public class circlelistActivity extends AppCompatActivity {
             imgID[i] = getResources().getIdentifier(s,"drawable",getPackageName());
         }
     }
-    public void setListViewHeight(ListView listView){
-        ListAdapter listAdapter = listView.getAdapter();
-        if(listAdapter == null){
-            return;
-        }
-        int totalHeight = 0;
-        for(int i = 0; i < listAdapter.getCount(); i++){
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()-1));
-        params.height += 5;
-        listView.setLayoutParams(params);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,9 +78,6 @@ public class circlelistActivity extends AppCompatActivity {
         initialize();
         instance = this;
         new DownloadWebpageText().execute(getDataUrl);
-        //for(int i = 0; i < 5; i++){
-        //    circleInfosList.add(new circleInfo(imgID[i], name[i], "简介："+briefIntro[i]));
-        //}
         circleAdapter = new CircleAdapter(this, circleInfosList);
         circle_listView.setAdapter(circleAdapter);
         circle_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,7 +86,6 @@ public class circlelistActivity extends AppCompatActivity {
                 Intent intent = new Intent(circlelistActivity.this, circleDiscussionZone.class);
                 intent.putExtra("circleName", name[position]);
                 intent.putExtra("cirID", position+1);
-                //intent.putExtra("follower", follow.toString());
                 startActivity(intent);
             }
         });

@@ -2,7 +2,12 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:id="@+id/circle_follow"
+        android:icon="@drawable/unlike"
+        android:visible="true"
+        app:showAsAction="always"
+        android:title="关注"/>
     <item
         android:id="@+id/menu_next"
         android:icon="@drawable/ic_action_post"
